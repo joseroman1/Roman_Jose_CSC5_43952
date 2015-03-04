@@ -1,6 +1,6 @@
 /* 
  * File:   main.cpp
- * Author: Dr. Mark E. Lehr
+ * Author: Jose Roman
  * Created on March 2, 2015, 9:03 AM
  *      Purpose:  Free fall problem from Savitch
  */
