@@ -19,21 +19,33 @@ using namespace std;
 
 int main(int argc, char** argv) {
     int first_number, second_number,sum_results,product_results;
-    cout<<"This program reads in two integers and then outputs both their sum and their product.\n";
+    //Output Prompt for input
     cout<<"Press return after entering a number.\n";
-    cout<<"Enter number the first number:\n";
+    cout<<"Enter the first number:\n";
+    //Input first number 
     cin>> first_number;
+    //Output Prompt for input
     cout<<"Enter the second number:\n";
+    //Input second number
     cin>>second_number ;
-    sum_results = first_number * second_number;
-    cout<<"The product and addition of ";
+    //Calculating sum of both numbers.
+    sum_results=first_number + second_number;
+    //Calculating product of both numbers.
+    product_results=first_number * second_number;
+    //Output results of addition calculation.
+    cout<<"The sum of ";
     cout<< first_number;
-    cout<< "and ";
+    cout<< " and ";
     cout<< second_number;
-    cout<< " is \n";
-    cout<<" ";
-    cout<<"product_addition\n";
-    cout<< " peas in all the pods.\n";
+    cout<< " is: ";
+    cout<< sum_results<<endl;
+    //Output the result of multiplication calculation.
+    cout<< "The product of ";
+    cout<<first_number;
+    cout<< " and ";
+    cout<< second_number;
+    cout<< " is: ";
+    cout<< product_results <<endl;
     //Exit right stage!
 
     return 0;
