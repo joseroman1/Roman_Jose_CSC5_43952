@@ -18,21 +18,24 @@ using namespace std;
 //Execution Begins Here!
 
 int main(int argc, char** argv) {
-    int number_of_pods, peas_per_pod, total_peas;
+    int NmbPods, PeaPrPd, TtlPea;
+    NmbPods;//Number of Pods
+    PeaPrPd;//Peas Per Pod
+    TtlPea;//Total Peas
     cout<< "Press return after entering a number.\n";
     cout<<"Enter the number of pods:\n";
-    cin>> number_of_pods;
+    cin>> NmbPods;
     cout<<"Enter the number of peas in a pod:\n";
-    cin>>peas_per_pod;
-    total_peas = number_of_pods * peas_per_pod;
+    cin>> PeaPrPd;
+    TtlPea = NmbPods * PeaPrPd;
     cout<<"If you have ";
-    cout<< number_of_pods;
+    cout<<  NmbPods;
     cout<<" pea pods\n";
     cout<< "and ";
-    cout<< peas_per_pod;
+    cout<< PeaPrPd;
     cout<< " peas in each pod, then\n";
     cout<<"you have ";
-    cout<<total_peas;
+    cout<<TtlPea;
     cout<< " peas in all the pods.\n";
     //Exit right stage!
 

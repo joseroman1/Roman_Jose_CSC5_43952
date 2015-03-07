@@ -18,34 +18,35 @@ using namespace std;
 //Execution Begins Here!
 
 int main(int argc, char** argv) {
-    int first_number, second_number,sum_results,product_results;
+    int first, second,sum,product;
     //Output Prompt for input
     cout<<"Press return after entering a number.\n";
     cout<<"Enter the first number:\n";
     //Input first number 
-    cin>> first_number;
+    cin>> first;
     //Output Prompt for input
     cout<<"Enter the second number:\n";
     //Input second number
-    cin>>second_number ;
+    cin>>second ;
     //Calculating sum of both numbers.
-    sum_results=first_number + second_number;
+    sum=first + second;
     //Calculating product of both numbers.
-    product_results=first_number * second_number;
+    product=first * second;
     //Output results of addition calculation.
     cout<<"The sum of ";
-    cout<< first_number;
+    cout<< first;
     cout<< " and ";
-    cout<< second_number;
+    cout<< second;
     cout<< " is: ";
-    cout<< sum_results<<endl;
+    cout<< sum<<endl;
     //Output the result of multiplication calculation.
     cout<< "The product of ";
-    cout<<first_number;
+    cout<<first;
     cout<< " and ";
-    cout<< second_number;
+    cout<< second;
     cout<< " is: ";
-    cout<< product_results <<endl;
+    cout<< product<<endl;
+    cout<< "This is the end of the program.\n";
     //Exit right stage!
 
     return 0;
