@@ -10,7 +10,11 @@
 using namespace std;
 
 //User Libraries
+
+
 //Global Constants
+
+
 //Function Prototypes
 
 //Execution begins
@@ -18,8 +22,7 @@ int main(int argc, char** argv)
 {
     //Declare variables
     int qrtrs, dimes, nickls; //Quarters, dimes, nickels.
-    float tlchngd;//Total change in dollars and cents
-    float tlchngc;//Total change in cents
+   float tlchngc;//Total change in cents
   
     //Output Prompt for input of quarters.
     cout<<"This program count your change!\n";
