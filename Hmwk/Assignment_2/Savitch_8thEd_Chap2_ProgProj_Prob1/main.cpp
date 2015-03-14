@@ -20,6 +20,7 @@ const float CMTNON=3.527392e4;//conversion from metric tons to ounces
 //Execution begins here!
 int main(int argc, char** argv) {
     //Declare variables
+    string input;
     float wtPackOz;//weight of cereal contents in ounces
     float wtPackTn;//weight of cereal contents in metric tons
     float nPackTn; //number of cereal boxes in a metric ton
@@ -38,29 +39,21 @@ int main(int argc, char** argv) {
     cout<<"Weight of cereal box is "<<wtPackTn<<"(metric tons)"<<endl;
     cout<<"Number of cereal boxes in a metric ton = "<<nPackTn<<endl;
     
+    // Allow the calculation to be repeated as often as the user wishes. 
+    cout << "Would you like to repeat calculation? Yes or No? ";
+    cin  >> input;
     
-    //ask if user would like to repeat the calculation
-    cout<<"Would you like to repeat he calculation?"<<endl;
-    cout<<"or make a new calculation?"<<endl;
-    cout<<"Type Y for yes and N for no."<<endl;
-    char answer;
-    cin>>answer;
-    if(answer=='Y'||answer=='y'){
-         cout<<"Input the number of ounces on the cereal"<<endl;
-    cout<<"box to convert to metric tons."<<endl;
-    cout<<"Format is float ddd.ddd (ounces)"<<endl;
-    cin>>wtPackOz;
-    
-    //calculate the results
-    wtPackTn=wtPackOz/CMTNON;
-    nPackTn=1/wtPackTn;
-   
-    //output he results
-    cout<<"Weight of cereal box is "<<wtPackTn<<"(metric tons)"<<endl;
-    cout<<"Number of cereal boxes in a metric ton = "<<nPackTn<<endl;
+    if (input == "yes")
+        main(argc, argv);
+    else if (input == "no")
+        return 0;
+    else
+    {
+        cout << "What was that? yes or no: ";
+        cin  >> input;
     }
-    
-    //Exit stage right!
-    
     return 0;
 }
+   
+    
+   
