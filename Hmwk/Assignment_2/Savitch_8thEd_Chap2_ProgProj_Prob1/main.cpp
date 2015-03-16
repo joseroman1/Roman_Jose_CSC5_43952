@@ -21,23 +21,23 @@ const float CMTNON=3.527392e4;//conversion from metric tons to ounces
 int main(int argc, char** argv) {
     //Declare variables
     string input;
-    float wtPackOz;//weight of cereal contents in ounces
-    float wtPackTn;//weight of cereal contents in metric tons
+    float wPackOz;//weight of cereal contents in ounces
+    float wPackTn;//weight of cereal contents in metric tons
     float nPackTn; //number of cereal boxes in a metric ton
     
     //prompt user for cereal weight.
     cout<<"Input the number of ounces on the cereal"<<endl;
     cout<<"box to convert to metric tons."<<endl;
     cout<<"Format is float ddd.ddd (ounces)"<<endl;
-    cin>>wtPackOz;
+    cin>>wPackOz;
     
     //calculate the results
-    wtPackTn=wtPackOz/CMTNON;
-    nPackTn=1/wtPackTn;
+    wPackTn=wPackOz/CMTNON;
+    nPackTn=1/wPackTn;
     
     //output he results
-    cout<<"Weight of cereal box is "<<wtPackTn<<"(metric tons)"<<endl;
-    cout<<"Number of cereal boxes in a metric ton = "<<nPackTn<<endl;
+    cout<<"Weight of cereal box is "<<wPackTn<<"(metric tons)"<<endl;
+    cout<<"Number of cereal boxes needed to yield 1 metric ton = "<<nPackTn<<endl;
     
     // Allow the calculation to be repeated as often as the user wishes. 
     cout << "Would you like to repeat calculation? Yes or No? ";
