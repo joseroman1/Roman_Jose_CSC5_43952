@@ -45,7 +45,7 @@ int main(int argc, char** argv)
          cout<<"You could fit up to "<<people<<" more people into the meeting."<<endl;
     } else {
         extra= nOfppl-mCap; //extra attendees not allowed
-        cout<<"This meeting is illegal and dangerous."<<endl;
+        cout<<"This meeting is illegal and dangerous to hold."<<endl;
         cout<<"You need to lose at least "<<extra<<" of people to make the meeting legal."<<endl;
     }
     //Exit Stage Right
