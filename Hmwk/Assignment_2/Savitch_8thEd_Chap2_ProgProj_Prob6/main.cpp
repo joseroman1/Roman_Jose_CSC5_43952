@@ -31,9 +31,11 @@ int main(int argc, char** argv)
     
     // Read in the maximum room capacity and the number of people attending the 
     // meeting.
-    cout << "What is the maximum room capacity? ";
+    cout<< "This program determine whether a meeting room is in violation"<<endl;
+    cout<< "of fire law regulations regarding the maximum room capacity."<<endl;
+    cout<< "What is the maximum room capacity? ";
     cin  >> mCap;
-    cout << "How many people are attending the meeting? ";
+    cout<< "How many people are attending the meeting? ";
     cin  >> nOfppl;
     
    //Calculate if meeting is able to start
@@ -48,7 +50,7 @@ int main(int argc, char** argv)
     }
     //Exit Stage Right
     // Ask to repeat
-    cout << "Would you like the repeat calculation: ";
+    cout<< "Would you like the repeat calculation: "<<endl;
     cin  >> input;
 
     if (input == "yes")
@@ -57,7 +59,7 @@ int main(int argc, char** argv)
         return 0;
     else
     {
-        cout << "What was that? yes or no: ";
+        cout<< "What was that? yes or no: "<<endl;
         cin  >> input;
     }
     
