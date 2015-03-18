@@ -25,8 +25,9 @@ int main(int argc, char** argv)
 {
     // Declare variables
     string input;    // user input
-    int mCap; // maximum room capacity
-    int nOfppl;    // the number of people attending
+    float mCap; // maximum room capacity
+    float nOfppl;    // the number of people attending
+    float people, extra;
     
     // Read in the maximum room capacity and the number of people attending the 
     // meeting.
@@ -35,23 +36,17 @@ int main(int argc, char** argv)
     cout << "How many people are attending the meeting? ";
     cin  >> nOfppl;
     
-    // If the number of people is less than or equal to the maximum room 
-    // capacity, the program announces that...
-    if (nOfppl <= mCap)
-    {
-        cout << "  It is legal to hold the meeting."     << endl;
-        cout << "  Number of attendees: " << nOfppl    << endl;
-        cout << "  Maximum Capacity: "    << mCap << endl;
+   //Calculate if meeting is able to start
+    if (nOfppl<=mCap){
+         people = mCap-nOfppl; //additional attendees allowed
+         cout<<"This meeting is legal to hold!"<<endl;
+         cout<<"You could fit up to "<<people<<" more people into the meeting."<<endl;
+    } else {
+        extra= nOfppl-mCap; //extra attendees not allowed
+        cout<<"This meeting is illegal and dangerous."<<endl;
+        cout<<"You need to lose at least "<<extra<<" of people to make the meeting legal."<<endl;
     }
-    // If the number of people exceeds the maximum room capacity, 
-    // the program announces that...
-    else
-    {
-        cout << "  The meeting cannot be held due to fire regulations." << endl;
-        cout << "  Number of attendees: " << nOfppl    << endl;
-        cout << "  Maximum Capacity: "    << mCap << endl;
-    } 
-
+    //Exit Stage Right
     // Ask to repeat
     cout << "Would you like the repeat calculation: ";
     cin  >> input;
