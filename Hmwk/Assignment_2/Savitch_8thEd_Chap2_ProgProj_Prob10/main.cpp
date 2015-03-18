@@ -18,38 +18,68 @@ using namespace std;
 
 
 //Execution Begins Here!
-int main(int argc, char** argv)
-{
-//Declare variables
-    int sum=0,sumNeg=0,sumPos=0,sumEven=0, sumOdd=0;
-    int input;
-    //Prompt for a value and sum it
-    cout<<endl<<"Input an integer value!"<<endl;
-    cin>>input;
-    sum+=input;
-    if(input>0)sumPos+=input;
-    else sumNeg+=input;
-    if(input%2)sumOdd+=input;
-    else sumEven+=input;
-    //Output the results
-    cout<<"Sum =          "<<sum<<endl;
-    cout<<"Positive Sum = "<<sumPos<<endl;
-    cout<<"Negative Sum = "<<sumNeg<<endl;
-    cout<<"Even Sum =     "<<sumEven<<endl;
-    cout<<"Odd Sum =      "<<sumOdd<<endl;
-     //Prompt for a value and sum it
-    cout<<endl<<"Input an integer value!"<<endl;
-    cin>>input;
-    sum+=input;
-    if(input>0)sumPos+=input;
-    else sumNeg+=input;
-    if(input%2)sumOdd+=input;
-    else sumEven+=input;
-    //Output the results
-    cout<<"Sum =          "<<sum<<endl;
-    cout<<"Positive Sum = "<<sumPos<<endl;
-    cout<<"Negative Sum = "<<sumNeg<<endl;
-    cout<<"Even Sum =     "<<sumEven<<endl;
-    cout<<"Odd Sum =      "<<sumOdd<<endl;
+int main(int argc, char** argv){
+//Declare variable
+    int num1, num2, num3, num4, num5, num6, num7, num8, num9, num10, sumAll=0, posiSum=0, negeSum=0;
+    
+    cout<<"Enter ten whole numbers separated by spaces.";
+    cout<<" They can be negative or positive."<<endl;
+    cin>>num1>>num2>>num3>>num4>>num5>>num6>>num7>>num8>>num9>>num10;
+    
+    if (num1>0)
+    { posiSum = posiSum + num1;}
+    else
+    {  negeSum = negeSum + num1;}
+    
+    if (num2>0)
+    { posiSum = posiSum + num2;}
+    else
+    {negeSum = negeSum + num2;}
+    
+    if (num3>0)
+    { posiSum = posiSum + num3;}
+    else
+    {negeSum = negeSum + num3;}
+    
+    if (num4>0)
+    { posiSum = posiSum + num4;}
+    else
+    { negeSum = negeSum + num4;}
+    
+    if (num5>0)
+    { posiSum = posiSum + num5;}
+    else
+    {  negeSum = negeSum + num5;}
+    
+    if (num6>0)
+    { posiSum = posiSum + num6;}
+    else
+    { negeSum = negeSum + num6;}
+    
+    if (num7>0)
+    {  posiSum = posiSum + num7;}
+    else
+    { negeSum = negeSum + num7;}
+    
+    if (num8>0)
+    { posiSum = posiSum + num8;}
+    else
+    {negeSum = negeSum + num8;}
+    
+    if (num9>0)
+    { posiSum = posiSum + num9;}
+    else
+    {negeSum = negeSum + num9;}
+    
+    if (num10>0)
+    {posiSum = posiSum + num10;}
+    else
+    {negeSum = negeSum + num10;}
+    
+    sumAll = num1 + num2 + num3 + num4 + num5 + num6 + num7 + num8 + num9 + num10;
+    
+    cout<<sumAll<<" is the sum of all the numbers entered."<<endl;
+    cout<<posiSum<<" is the sum of all the positive numbers entered."<<endl;
+    cout<<negeSum<<" is the sum of all the negative numbers entered."<<endl;
     return 0;
 }
