@@ -11,12 +11,14 @@ using namespace std;
 
 //User Libraries
 
+
 //Global Constants
+
 
 //Function Prototypes
 
-//Execution Begins Here!
 
+//Execution Begins Here!
 int main(int argc, char** argv) {
     //Declare variables
     unsigned short wtlbs, htin, ageyrs;
