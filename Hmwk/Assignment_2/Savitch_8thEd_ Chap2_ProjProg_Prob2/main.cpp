@@ -44,6 +44,7 @@ int main(int argc, char** argv)
     // Calculate the amount of sweetener
     amtSoda = (amKill / mWeight) * dWeight;
     amtSoda = amtSoda / amSweet;
+    //Output
     cout << "You can drink " << amtSoda << " without dying" << endl;
     
     // Allow the calculation to be repeated as often as the user wishes. 
