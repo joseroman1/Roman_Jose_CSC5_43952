@@ -9,9 +9,9 @@
  * Problem 5 -> Approximate value of PI 
  * Problem 6 -> Interest Due
  * Problem 7 -> Arabic Numerals into Roman Numerals
- * Problem 8 -> Blackjack Game
- * Problem 9 ->
- * Problem 0 ->
+ * Problem 8 -> Find a 4 digit number that passes the conditions
+ * Problem 9 -> Minimum and Maximum
+ * Problem 0 -> BMR Calculator
  * Modified on Mar 23rd, 2015
  */
 
@@ -42,9 +42,9 @@ int main(int argc, char** argv) {
     cout<<"Type 5 to solve Savitch 8th Edition Chapter 3 Problem 12"<<endl;
     cout<<"Type 6 to solve Savitch 8th Edition Chapter 3 Problem 2"<<endl;
     cout<<"Type 7 to solve Savitch 8th Edition Chapter 3 Problem 7"<<endl;
-    cout<<"Type 8 to solve Savitch 8th Edition Chapter 3 Problem 8"<<endl;
-    cout<<"Type 9 to solve Savitch 8th Edition Chapter 3 Problem 16"<<endl;
-    cout<<"Type 0 to solve Savitch 8th Edition Chapter 3 Problem 12"<<endl;
+    cout<<"Type 8 to solve Savitch 9th Edition Chapter 3 Problem 13"<<endl;
+    cout<<"Type 9 to solve Gaddis 8th Edition Chapter 4 Problem 11"<<endl;
+    cout<<"Type 0 to solve Savitch 8th Edition Chapter 3 Problem 17"<<endl;
     cout<<"Type anything else to quit with no solutions."<<endl;
     //Read the choice
     char choice;
@@ -374,127 +374,111 @@ int main(int argc, char** argv) {
             break;
         }
         case '8':{ 
-   cout<<"You have chosen Savitch 8th Edition Chapter 3 Problem 8."<<endl;
-   //Declare the variables 
-    float VlofCrd;//Value of the card
-    float TlScr2,TlScr3,TlScr4,TlScr5;//Total Score
-    float Fcard,Scard,Tcard,Focard,Ficard;//Number of Cards 2-5
- 
-    //Calculations 
-    TlScr2=Fcard+Scard;
-    TlScr3=Fcard+Scard+Tcard;
-    TlScr4=Fcard+Scard+Tcard+Focard;
-    TlScr5=Fcard+Scard+Tcard+Focard+Ficard;
-    top:
-    //Number of cards 
-    cout<<"2 cards "<<endl; 
-    cout<<"3 cards "<<endl;
-    cout<<"4 cards "<<endl;
-    cout<<"5 cards "<<endl;
-    cout<<"Input the Number of cards you have: "<<endl;
-    int choice;
-    cin>>choice;
-    //Based upon the choice, display the results
-    switch(choice){
-        
-        case 2 :{ //(2 cards)
-            cout<<"Note: If card is a Jack, Queen or King enter 10"<<endl;
-            cout<<"if is a A enter your choice of 1 or 11"<<endl;
-            cout<<"What is the value of your first cards: "<<endl;
-            cin>>Fcard;
-            cout<<"What is the value of your second cards: ";
-            cin>>Scard;
-            TlScr2=Fcard+Scard;
-            
-            if (TlScr2 <= 21)
-            {
-                cout<<"Your total score is: ";
-                cout<<TlScr2<<endl;
-            }
-            else {
-                cout<<"BUSTED :p"<<endl;
-                }
-        }
-            break;
-            
-        case 3 :{ //(3 cards)
-            cout<<"Note: If card is a Jack, Queen or King enter 10"<<endl;
-            cout<<"if is a A enter your choice of 1 or 11"<<endl;
-            cout<<"What is the value of your first cards: "<<endl;
-            cin>>Fcard;
-            cout<<"What is the value of your second cards: ";
-            cin>>Scard;
-            cout<<"What is the value of your third cards: ";
-            cin>>Tcard;
-
-            TlScr3=Fcard+Scard+Tcard;
-            
-            if (TlScr3 <= 21)
-            {
-                cout<<"Your total score is: ";
-                cout<<TlScr3<<endl;
-            }
-            else {
-                cout<<"BUSTED :p"<<endl;
-                 }
-        }
-            break;
-            
-        case 4 :{ //(4 cards)
-            cout<<"Note: If card is a Jack, Queen or King enter 10"<<endl;
-            cout<<"if is a A enter your choice of 1 or 11"<<endl;
-            cout<<"What is the value of your first cards: "<<endl;
-            cin>>Fcard;
-            cout<<"What is the value of your second cards: ";
-            cin>>Scard;
-            cout<<"What is the value of your third cards: ";
-            cin>>Tcard;
-            cout<<"What is the value of your fourth cards: ";
-            cin>>Focard;
-            TlScr4=Fcard+Scard+Tcard+Focard;
-            
-            if (TlScr4 <= 21)
-            {
-                cout<<"Your total score is: ";
-                cout<<TlScr4<<endl;
-            }
-            else {
-                cout<<"BUSTED :p"<<endl;
-                 }
-        }
-            break;
-            
-        case 5 :{ //(5 cards) 
-            cout<<"Note: If card is a Jack, Queen or King enter 10"<<endl;
-            cout<<"if is a A enter your choice of 1 or 11"<<endl;
-            cout<<"What is the value of your first cards: "<<endl;
-            cin>>Fcard;
-            cout<<"What is the value of your second cards: ";
-            cin>>Scard;
-            cout<<"What is the value of your third cards: ";
-            cin>>Tcard;
-            cout<<"What is the value of your fourth cards: ";
-            cin>>Focard;
-            cout<<"What is the value of your fifth cards: ";
-            cin>>Ficard;
-            TlScr5=Fcard+Scard+Tcard+Focard+Ficard;
-            
-            if (TlScr5 <= 21)
-            {
-                cout<<"Your total score is: ";
-                cout<<TlScr5<<endl;
-            }
-            else {
-                cout<<"BUSTED :p"<<endl;
-                 }
-        }
-            break;
+   cout<<"You have chosen Savitch 9th Edition Chapter 3 Problem 13"<<endl;
+   //Loop for all possible digits
+    for(int d1000=0;d1000<=9;d1000++){
+    for(int d100=0;d100<=9;d100++){
+         for(int d10=0;d10<=9;d10++){
+           for(int d1=0;d1<=9;d1++){   
+               if((d1000==3*d10) &&
+                       (d1%2==1) &&
+                       ((d1000+d100+d10+d1)==27)&&
+                   (d1!=d10&&d1!=d100&&d1!=d1000&&
+                           d10!=d100&&d10!=d1000&&d100!=d1000)){
+                   cout<<"The Address Number = ";
+                   cout<<d1000<<d100<<d10<<d1<<endl;
+               }
+           }
+         }
     }
-    goto top;
+    }
             break;
         }
         case '9':{
-     cout<<"You have chosen Savitch 8th Edition Chapter 3 Problem 16."<<endl;
+    cout<<"You have chosen Gaddis 8th Edition Chapter 4 Problem 1"<<endl;        
+   //Declare Variables
+    int X;
+    int Y;
+//input the number
+cout<<"This program finds which number is the largest or if they are equal."<<endl;
+cout<<"What is the first number that you want to input ?\n"<<endl;
+cin>>X;
+cout<<"What is the second number that you want to input ?\n"<<endl;
+cin>>Y;
+//output the answer
+cout<<"First number is "<<X<<" and the second number is "<<Y<<endl;
+if (X > Y)
+cout << X << " is the larger number." << endl;
+
+else if (Y > X)
+cout << Y << " is the larger number." << endl;
+
+else 
+cout << "Both numbers are equal." <<endl;
+            break;
+        }
+        case '0':{
+    cout<<"You have chosen Savitch 8th Edition Chapter 3 Problem 17"<<endl;
+    cout<<"This program will calculate how many chocolate bars you should eat to maintain your body weight"<<endl;
+    //Declare Values
+    float height, weight, age;
+    unsigned char cBar = 230; //calories
+    cout<<"What is your height(in inches)? ";
+    cin>>height;
+    
+    cout<<"What is your weight in pounds? ";
+    cin>>weight;
+    
+    cout<<"What is your age(in years, of course)? ";
+    cin>>age;
+    
+    float men =  (655+ (4.3*weight)+(4.7*height)-(4.7*age));//formual for men
+    float women =(66+(6.3*weight)+(12.9*height)-(6.8*age)); //formula for women
+    
+    char sex; // The sex of the human, wether male or female
+    
+    cout<<"what is your sex?"<<endl;
+    cout<<"if male type m, if feale type f."<<endl; //to limit user error
+    cin>>sex;
+    char choose;
+    cout<<"Choose either a,b,c, or d based on the following selection.\n";
+    cout<<" Are you:"<<endl;
+    cout<<"a. Sedentary"<<endl;
+    cout<<"b. Somewhat active (exercise occasionally)"<<endl;
+    cout<<"c. Active(exercise 3-4 days a week)"<<endl;
+    cout<<"d. Highly Active(Exercise everyday)"<<endl;
+    cin>>choose;
+    
+    cout<<fixed<<showpoint<<setprecision(0);
+    if(sex=='m'&&choose=='a'){
+        cout<<"Eat about "<<(men+men*.20)/cBar<<" chocolate bars to maintain your body weight"<<endl;
+    }
+    
+    if(sex=='f'&&choose=='a') {
+        cout<<"Eat about "<<(women+women*.20)/cBar<<" chocolate bars to maintain your body weight"<<endl;
+    }
+    if(sex=='m'&&choose=='b'){
+        cout<<"Eat about "<<(men+men*.3)/cBar<<" chocolate bars to maintain your body weight"<<endl;
+    }
+    
+    if(sex=='f'&&choose=='b') {
+        cout<<"Eat about "<<(women+women*.3)/cBar<<" chocolate bars to maintain your body weight"<<endl;
+    }
+    if(sex=='m'&&choose=='c'){
+        cout<<"Eat about "<<(men+men*.4)/cBar<<" chocolate bars to maintain your body weight"<<endl;
+    }
+    
+    if(sex=='f'&&choose=='c') {
+        cout<<"Eat about "<<(women+women*.4)/cBar<<" chocolate bars to maintain your body weight"<<endl;
+    }
+    if(sex=='m'&&choose=='d'){
+        cout<<"Eat about "<<(men+men*.5)/cBar<<" chocolate bars to maintain your body weight"<<endl;
+    }
+    
+    if(sex=='f'&&choose=='d') {
+        cout<<"Eat about "<<(women+women*.5)/cBar<<" chocolate bars to maintain your body weight"<<endl;
+    }
+    
             break;
         }
             default:{

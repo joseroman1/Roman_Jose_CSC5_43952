@@ -5,22 +5,29 @@
  *      Purpose: BMR Calculator
  */
 
+//System libraries
 #include <iostream>
 #include <iomanip>
 
 using namespace std;
 
-/*
- * 
- */
+//User Libraries
 
-float const chocbar = 230; //calories
+
+//Global Constants
+
+
+//Function Prototypes
+
+//Execution Begins Here!
+
 
 int main(int argc, const char * argv[]) {
     
     cout<<"This program will calculate how many chocolate bars you should eat to maintain your body weight"<<endl;
+    //Declare Values
     float height, weight, age;
-    
+    unsigned char cBar = 230; //calories
     cout<<"What is your height(in inches)? ";
     cin>>height;
     
@@ -49,32 +56,32 @@ int main(int argc, const char * argv[]) {
     
     cout<<fixed<<showpoint<<setprecision(0);
     if(sex=='m'&&choose=='a'){
-        cout<<"Eat about "<<(men+men*.20)/chocbar<<" chocolate bars to maintain your body weight"<<endl;
+        cout<<"Eat about "<<(men+men*.20)/cBar<<" chocolate bars to maintain your body weight"<<endl;
     }
     
     if(sex=='f'&&choose=='a') {
-        cout<<"Eat about "<<(women+women*.20)/chocbar<<" chocolate bars to maintain your body weight"<<endl;
+        cout<<"Eat about "<<(women+women*.20)/cBar<<" chocolate bars to maintain your body weight"<<endl;
     }
     if(sex=='m'&&choose=='b'){
-        cout<<"Eat about "<<(men+men*.3)/chocbar<<" chocolate bars to maintain your body weight"<<endl;
+        cout<<"Eat about "<<(men+men*.3)/cBar<<" chocolate bars to maintain your body weight"<<endl;
     }
     
     if(sex=='f'&&choose=='b') {
-        cout<<"Eat about "<<(women+women*.3)/chocbar<<" chocolate bars to maintain your body weight"<<endl;
+        cout<<"Eat about "<<(women+women*.3)/cBar<<" chocolate bars to maintain your body weight"<<endl;
     }
     if(sex=='m'&&choose=='c'){
-        cout<<"Eat about "<<(men+men*.4)/chocbar<<" chocolate bars to maintain your body weight"<<endl;
+        cout<<"Eat about "<<(men+men*.4)/cBar<<" chocolate bars to maintain your body weight"<<endl;
     }
     
     if(sex=='f'&&choose=='c') {
-        cout<<"Eat about "<<(women+women*.4)/chocbar<<" chocolate bars to maintain your body weight"<<endl;
+        cout<<"Eat about "<<(women+women*.4)/cBar<<" chocolate bars to maintain your body weight"<<endl;
     }
     if(sex=='m'&&choose=='d'){
-        cout<<"Eat about "<<(men+men*.5)/chocbar<<" chocolate bars to maintain your body weight"<<endl;
+        cout<<"Eat about "<<(men+men*.5)/cBar<<" chocolate bars to maintain your body weight"<<endl;
     }
     
     if(sex=='f'&&choose=='d') {
-        cout<<"Eat about "<<(women+women*.5)/chocbar<<" chocolate bars to maintain your body weight"<<endl;
+        cout<<"Eat about "<<(women+women*.5)/cBar<<" chocolate bars to maintain your body weight"<<endl;
     }
     
     return 0;
