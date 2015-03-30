@@ -1,8 +1,8 @@
 /* 
  * File:   main.cpp
- * Author: JR
+ * Author: Jose Roman
  *Created on March 29, 2015, 5:58 PM
- *     Purpose: Astrology Program.
+ *     Purpose: Interest Due.
  */
 
 //System Libraries
@@ -17,137 +17,80 @@ using namespace std;
 
 //Execution Begins Here!
 int main(int argc, char** argv) {
-int month, day;
+    //Define the variables
+    float aBal, intrat, totdue, minpay;
+    //Ask for the input
+    cout<<"Enter the account balance"<<endl;
+    cin>>aBal;
     
-    cout<<"Enter the month that you were born. "<<endl;
-    cin>>month;
     
-    switch (month)
+    //multiply the interest rate by the account balance for the interest due
+    if (aBal <= 1000)
+        intrat=aBal*.015;
+    else
+        intrat=aBal*.01;
+    //The total due is the top section added to the original balance
+    if (aBal <= 1000){
+        totdue=aBal*.015+aBal;}
+    else{
+        totdue=aBal*.01+aBal;}
+    //Min payment is a bit trickey since theres three options
+    minpay=totdue*.1;
+    //if the minpay is greater then 10 dollars
+    if (minpay>=10)
+        minpay=minpay;
+    //if the minpay is less then the amount owed total, means it only works 
+    //when you are about to close the balance
+    else if (totdue<=10)
+        minpay=totdue;
+    //if the minpay is not going to be closed soon but they still want some
+    //money
+    else (minpay=10);
+    //show the results
+    cout<<"Your interest due is $"<<intrat<<endl;
+    cout<<"Your total due is $"<<totdue<<endl;
+    cout<<"Your minimum payment is $"<<minpay<<endl;
+    //Ask to run it again
+    cout<<"Would you like to run another amount?"<<endl;
+    cout<<"Enter Y for yes and N for no, followed by pressing enter\n";
+    char answer;
+    cin>>answer;
+    while ((answer == 'Y')||(answer == 'y'))
     {
-    case 1:
-        cout<<"The month you chose was January."; 
-        cout<<"Enter the day you were born."<<endl;
-        cin>>day;
-            if (day>=1&&day<20)
-                cout<<"You are a Capricorn!"<<endl;
-            else 
-                cout<<"You are an Aquarius!"<<endl;
-        break;
-        
-    case 2:
-        cout<<"The month you chose was February."<<endl; 
-        cout<<"Enter the day you were born."<<endl;
-        cin>>day;
-            if (day>=1&&day<19)
-                cout<<"You are an Aquarius!"<<endl;
-            else
-                cout<<"You are a Pisces!"<<endl;       
-        break;   
-        
-    case 3:
-        cout<<"The month you chose was March."<<endl;   
-        cout<<"Enter the day you were born."<<endl;
-        cin>>day;
-        if (day>=1&&day<21)
-            cout<<"You are a Pisces!"<<endl;
+        //Ask for the input
+        cout<<"Enter the account balance"<<endl;
+        cin>>aBal;
+        //multiply the interest rate by the account balance for the interest due
+        if (aBal <= 1000)
+            intrat=aBal*.015;
         else
-             cout<<"You are an Aries!"<<endl;
-        break;  
-        
-    case 4:
-        cout<<"The month you chose was April."<<endl; 
-        cout<<"Enter the day you were born."<<endl;
-        cin>>day;
-        if (day>=1&&day<20)
-             cout<<"You are an Aries!"<<endl;
-        else
-             cout<<"You are a Taurus!"<<endl;
-        break; 
-        
-    case 5:
-        cout<<"The month you chose was May."<<endl;
-        cout<<"Enter the day you were born."<<endl;
-        cin>>day;
-        if (day>=1&&day<20)
-             cout<<"You are a Taurus!"<<endl;
-        else
-             cout<<"You are a Gemini!"<<endl;
-        break; 
-        
-    case 6:
-        cout<<"The month you chose was June."<<endl;   
-        cout<<"Enter the day you were born."<<endl;
-        cin>>day;
-        if (day>=1&&day<20)
-             cout<<"You are a Gemini!"<<endl;
-        else
-             cout<<"You are a Cancer!"<<endl;
-        break; 
-        
-    case 7:
-        cout<<"The month you chose was July."<<endl; 
-        cout<<"Enter the day you were born."<<endl;
-        cin>>day;
-        if (day>=1&&day<20)
-             cout<<"You are a Cancer!"<<endl;
-        else
-             cout<<"You are a Leo!"<<endl;
-        break; 
-        
-    case 8:
-        cout<<"The month you chose was August."<<endl;     
-        cout<<"Enter the day you were born."<<endl;
-        cin>>day;
-        if (day>=1&&day<20)
-             cout<<"You are a Leo!"<<endl;
-        else 
-             cout<<"You are a Virgo!"<<endl;
-        break; 
-        
-    case 9:
-        cout<<"The month you chose was September."<<endl; 
-        cout<<"Enter the day you were born."<<endl;
-        cin>>day;
-        if (day>=1&&day<20)
-             cout<<"You are a Virgo!"<<endl;
-        else
-             cout<<"You are a Libra!"<<endl;
-        break;  
-        
-    case 10:
-        cout<<"The month you chose was October."<<endl;
-        cout<<"Enter the day you were born."<<endl;
-        cin>>day;   
-        if (day>=1&&day<20)
-             cout<<"You are a Libra!"<<endl;
-        else
-             cout<<"You are a Scorpio!"<<endl;
-        break;   
-        
-    case 11:
-        cout<<"The month you chose was November."<<endl;  
-        cout<<"Enter the day you were born."<<endl;
-        cin>>day;
-        if (day>=1&&day<20)
-             cout<<"You are a Scorpio!"<<endl;
-        else
-             cout<<"You are a Sagittarius!"<<endl;
-        break;    
-        
-    case 12:
-        cout<<"The month you chose was December."<<endl; 
-        cout<<"Enter the day you were born."<<endl;
-        cin>>day;
-        if (day>=1&&day<20)
-             cout<<"You are a Sagittarius!"<<endl;
-        else
-             cout<<"You are a Capricorn!"<<endl;
-        break;    
-        
+            intrat=aBal*.01;
+        //The total due is the top section added to the original balance
+        if (aBal <= 1000){
+            totdue=aBal*.015+aBal;}
+        else{
+            totdue=aBal*.01+aBal;}
+        //Min payment is a bit trickey since theres three options
+        minpay=totdue*.1;
+        //if the minpay is greater then 10 dollars
+        if (minpay>=10)
+            minpay=minpay;
+        //if the minpay is less then the amount owed total, means it only works 
+        //when you are about to close the balance
+        else if (totdue<=10)
+            minpay=totdue;
+        //if the minpay is not going to be closed soon but they still want some
+        //money
+        else (minpay=10);
+        //show the results
+        cout<<"Your interest due is $"<<intrat<<endl;
+        cout<<"Your total due is $"<<totdue<<endl;
+        cout<<"Your minimum payment is $"<<minpay<<endl;
+        //Ask to run it again
+        cout<<"Would you like to run another amount?"<<endl;
+        cin>>answer;
     }
-    
-    
-    
+    cout<<"Goodbye"<<endl;
+
     return 0;
 }
-

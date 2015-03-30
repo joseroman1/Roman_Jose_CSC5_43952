@@ -19,9 +19,10 @@ using namespace std;
 int main(int argc, char** argv) {
     //Declare variables
     unsigned short number;
-    
+    //Program Description 
+    cout<<"This program turns Arabaic Numerals into Roman Numerals."<<endl;
     //Prompt the user
-    cout<<"Input a number from 1000 to 3000"<<endl;
+    cout<<"Input a number from 1000 to 3000:"<<endl;
     cin>>number;
     
     //Determine the number of 1000's
