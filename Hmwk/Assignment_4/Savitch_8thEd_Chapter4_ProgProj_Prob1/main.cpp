@@ -15,8 +15,6 @@ using namespace std;
 //Global Constant 
 const float LGAL=0.264179;//Liters per gallon
 
-float fnMPG(float,float);
-
 //Function Prototype
 
 
@@ -27,6 +25,7 @@ int main(int argc, char** argv) {
     float cMiles;//Car miles
     float gGas;//Gallons of gas
     float mpg;
+    float fnMPG(float,float);
     string repeat;
     cout<<"This program finds a car's MPG:"<<endl;
     //Ask for inputs
