@@ -194,5 +194,7 @@ void problem3(){
 
 //************** Problem 4 ***********/
 void problem4(){
+    int weigh,height,age;
+    
                 }
                 
