@@ -2,7 +2,7 @@
  * File:   main.cpp
  * Author: Jose Roman
  * Created on April 8, 2015, 12:20 AM
- *      Purpose: 
+ *      Purpose: Force Attraction 
  */
 
 //System Libraries
