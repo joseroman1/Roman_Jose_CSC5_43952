@@ -26,7 +26,8 @@ void area(float a,float b,float c){
 }
 //Execute and test function
 int main(int argc, const char * argv[]) {
-    float a,b,c;                //3 sides of a triangle
+    float a,b,c;      
+    cout<<"This program calculates the area and perimeter of a Triangle"<<endl;
     cout<<"Side 1: "<<endl;
     cin>>a;
     cout<<"Side 2: "<<endl;
