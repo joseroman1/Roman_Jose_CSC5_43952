@@ -37,7 +37,7 @@ int main (int argc, char** argv){
     const int MLNIF =300; //Max lines in file
     string wordArray[MLNIF];
     int wCount =0;//Word Count
-    ifstream fin("randWords.txt");
+    ifstream fin("HangmanWords.txt");
     if (fin.is_open())
     {
         while(!fin.eof()&& wCount < MLNIF){
