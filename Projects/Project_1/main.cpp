@@ -45,6 +45,10 @@ int main (int argc, char** argv){
             wCount++;
         }
     }
-   
+    else
+        cout<<"File was not opened"<<endl;
+    int index = rand ()%wCount;
+    WORD= wordArray[index].c_str();
+    int wLen= strlen(WORD);
     return 0;
 }
