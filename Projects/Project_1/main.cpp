@@ -25,6 +25,26 @@ void rGame(char fBlank[],int,char,int,int);
 //Execution Begins Here!
 
 int main (int argc, char** argv){
+    //Initialize the random seed
+    srand (time(NULL));
     
+    //Declare Variables
+    char pGuess;//Player Guess
+    int score   =0;//Player Score
+    int strikes =0;//Guessed Wrong
+    int hints   =0;//Hints at the player
+    
+    const int MLNIF =300; //Max lines in file
+    string wordArray[MLNIF];
+    int wCount =0;//Word Count
+    ifstream fin("randWords.txt");
+    if (fin.is_open())
+    {
+        while(!fin.eof()&& wCount < MLNIF){
+            getline(fin, wordArray[wCount]);
+            wCount++;
+        }
+    }
+   
     return 0;
 }
