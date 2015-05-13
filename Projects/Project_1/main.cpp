@@ -35,20 +35,20 @@ int main (int argc, char** argv){
     int hints   =0;//Hints at the player
     
     const int MLNIF =300; //Max lines in file
-    string wordArray[MLNIF];
+    string wArray[MLNIF];
     int wCount =0;//Word Count
     ifstream fin("HangmanWords.txt");
     if (fin.is_open())
     {
         while(!fin.eof()&& wCount < MLNIF){
-            getline(fin, wordArray[wCount]);
+            getline(fin, wArray[wCount]);
             wCount++;
         }
     }
     else
         cout<<"File was not opened"<<endl;
     int index = rand ()%wCount;
-    WORD= wordArray[index].c_str();
+    WORD= wArray[index].c_str();
     int wLen= strlen(WORD);
     return 0;
 }
