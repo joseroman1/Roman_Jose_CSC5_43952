@@ -63,5 +63,9 @@ void rules(){
     cout<<"Rule 1. You will only have seven chances to guess the random word"<<endl;
     cout<<"Rule 2. If you guess the correct word before the seven chances you"<<endl;
     cout<<"         you will earn 10 points"<<endl;
-    cout<<"Rule 3."<<endl;
+    cout<<"Rule 3. I can give you only one hint but I will do deduct five points."<<endl;
+    
+}
+void rGame(){
+    
 }
