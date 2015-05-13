@@ -17,7 +17,7 @@ using namespace std;
 
 
 //Global Constants
-const char  *WORD;
+const char *WORD;
 enum FNDTYPE{NFOUND, FOUND, ARDFOUND};// Compare Results
 
 //Function Prototypes
