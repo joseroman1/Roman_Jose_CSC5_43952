@@ -53,3 +53,12 @@ int main (int argc, char** argv){
     int wLen= strlen(WORD);
     return 0;
 }
+
+
+//Rules of the game
+void rules(){
+    cout<<"Welcome to the Hangman Game..."<<endl;
+    cout<<"To win the game you need to guess the random word."<<endl;
+    cout<<"Rules:"<<endl;
+    cout<<"1. You will only have seven chances to guess the random word"<<endl;
+}
