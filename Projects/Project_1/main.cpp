@@ -60,5 +60,8 @@ void rules(){
     cout<<"Welcome to the Hangman Game..."<<endl;
     cout<<"To win the game you need to guess the random word."<<endl;
     cout<<"Rules:"<<endl;
-    cout<<"1. You will only have seven chances to guess the random word"<<endl;
+    cout<<"Rule 1. You will only have seven chances to guess the random word"<<endl;
+    cout<<"Rule 2. If you guess the correct word before the seven chances you"<<endl;
+    cout<<"         you will earn 10 points"<<endl;
+    cout<<"Rule 3."<<endl;
 }
