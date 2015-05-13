@@ -8,3 +8,11 @@ united
 roman
 jack
 rich
+riverside
+telemundo
+red
+laptop
+time
+gun
+refrigerator
+hamburger
