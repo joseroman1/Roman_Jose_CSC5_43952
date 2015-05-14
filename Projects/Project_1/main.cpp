@@ -21,7 +21,7 @@ const char *WORD;
 enum FNDTYPE{NFOUND, FOUND, ARDFOUND};// Compare Results
 
 //Function Prototypes
-void rules();//rules of the games
+void display();//rules of the games
 void rGame(char fBlank[],int,char,int,int,int);
 void display(char fBlank[], int);// Fill in the blanks
 FNDTYPE fLetter(char,char fBlank[]);//Blanks to be filled
@@ -71,7 +71,7 @@ int main (int argc, char** argv){
 
 
 //Rules of the game
-void rules(){
+void display(){
     cout<<"Welcome to the Hangman Game..."<<endl;
     cout<<"To win the game you need to guess the random word."<<endl;
     cout<<"Rules:"<<endl;
@@ -83,7 +83,7 @@ void rules(){
 }
 void rGame(char fBlank[],int size,char pGuess, int hints,int strikes,int score){
     //Input the rules of the games
-    rules();
+    display();
     display(fBlank,size);
     bool cWord = false;//
     while (cWord==false){
@@ -139,11 +139,15 @@ void rGame(char fBlank[],int size,char pGuess, int hints,int strikes,int score){
             if(strikes == 7)
                 break;
         }
-        }
-    }
-//Display results to user
-display(cWord,strikes,score);
+    }        
+    
 }
+//Display results to user
+display(cWord, strikes, score);
+}
+                               
+                              
+
 //
 void display(char fBlank[],int size){
     //Display the blanks
@@ -151,3 +155,12 @@ void display(char fBlank[],int size){
         cout<< " "<<fBlank[i];
     cout<<endl;
 }
+//Letter given by the user
+FNDTYPE fLetter(char pGuess,char fBlank[]){
+    char *cPter=strchr(fBlank,pGuess);// Pointers
+    if(cPter!=NULL)
+        return ARDFOUND;
+    
+    cPter=strchr(WORD,pGuess);
+    if(cPter==NULL)
+        return NFOUND;
