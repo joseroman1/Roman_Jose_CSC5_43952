@@ -22,7 +22,7 @@ enum FNDTYPE{NFOUND, FOUND, ARDFOUND};// Compare Results
 
 //Function Prototypes
 void rules();//rules of the games
-void rGame(char fBlank[],int,char,int,int);
+void rGame(char fBlank[],int,char,int,int,int);
 void display(char fBlank[], int);// Fill in the blanks
 FNDTYPE fLetter(char,char fBlank[]);//Blanks to be filled
 bool bonus(int);//Finish the word in seven chances
@@ -64,6 +64,7 @@ int main (int argc, char** argv){
     const char *blanks=space.c_str();//Empty string
     char fBlank[wLen];
     strcpy(fBlank,blanks);
+    rGame(fBlank,wLen,pGuess,hints,strikes,score);
     
     return 0;
 }
@@ -83,6 +84,54 @@ void rules(){
 void rGame(char fBlank[],int size,char pGuess, int hints,int strikes,int score){
     //Input the rules of the games
     rules();
-    
-    
+    display(fBlank,size);
+    bool cWord = false;//
+    while (cWord==false){
+        cout<<"Your Guess? ";
+        cin>>pGuess;
+        
+        if(pGuess=='?'){
+            if(hints==0){
+                int vowels;
+                for(int i=0;i<size;i++){
+                    switch(WORD[i]){
+                        case 'a':{vowels++;break;}
+                        case 'i':{vowels++;break;}
+                        case 'u':{vowels++;break;}
+                        default:break;
+                    };
+                }
+                cout<<vowels<<" vowel(s) is this word."<<endl;
+                cout<< "-5 points"<<endl;
+                score -=5;
+            }
+            else 
+                cout<<"No more hints are available."<<endl;
+            hints++;
+        }
+        else{
+            FNDTYPE result=fLetter(pGuess,fBlank);
+            if(result==NFOUND){
+                cout<<"Incorrect! -1 point."<<endl;
+                score--;
+                strikes++;
+            }
+            else{
+                if(result++FOUND){
+                    cout<<"Correct! +5 points.";
+                    score+=5;
+                }
+                else
+                    cout<<""
+                
+                        
+                    
+                        
+                    
+                    
+                }
+            }
+        }
+    }
+}
 }
