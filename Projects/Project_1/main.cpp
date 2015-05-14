@@ -23,6 +23,11 @@ enum FNDTYPE{NFOUND, FOUND, ARDFOUND};// Compare Results
 //Function Prototypes
 void rules();//rules of the games
 void rGame(char fBlank[],int,char,int,int);
+void display(char fBlank[], int);// Fill in the blanks
+FNDTYPE fLetter(char,char fBlank[]);//Blanks to be filled
+bool bonus(int);//Finish the word in seven chances
+void winlose(bool,int,int);//Output if the player won or lost
+void oFile(string,int,int);// Output the result in a file
 
 //Execution Begins Here!
 int main (int argc, char** argv){
@@ -51,6 +56,15 @@ int main (int argc, char** argv){
     int index = rand ()%wCount;
     WORD= wArray[index].c_str();
     int wLen= strlen(WORD);
+    
+    //Input player guesses in a string
+    string space;
+    for(int i=0;1<wLen;i++)
+        space+="_";
+    const char *blanks=space.c_str();//Empty string
+    char fBlank[wLen];
+    strcpy(fBlank,blanks);
+    
     return 0;
 }
 
@@ -66,6 +80,9 @@ void rules(){
     cout<<"Rule 3. I can give you only one hint but I will do deduct five points."<<endl;
     
 }
-void rGame(){
+void rGame(char fBlank[],int size,char pGuess, int hints,int strikes,int score){
+    //Input the rules of the games
+    rules();
+    
     
 }
