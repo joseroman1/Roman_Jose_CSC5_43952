@@ -18,7 +18,7 @@ using namespace std;
 
 //Global Constants
 const char *WORD;
-enum FNDTYPE{NFOUND, FOUND, ARDFOUND};// Compare Results
+enum FNDTYPE {NFOUND, FOUND, ARDFOUND};// Compare Results
 
 //Function Prototypes
 void display();//rules of the games
@@ -41,12 +41,12 @@ int main (int argc, char** argv){
     int strikes =0;//Guessed Wrong
     int hints   =0;//Hints at the player
     
-    const int MLNIF =200; //Max lines in file
+    const int MLNIF =300; //Max lines in file
     string wArray[MLNIF];
     int wCount =0;//Word Count
     ifstream fin("HangmanWords.txt");//File name for the hangman words
-    if (fin.is_open())
-    {
+    if (fin.is_open()){
+        
         while(!fin.eof()&& wCount < MLNIF){
             getline(fin, wArray[wCount]);
             wCount++;
@@ -54,15 +54,16 @@ int main (int argc, char** argv){
     }
     else
         cout<<"File was not opened"<<endl;//Input this if file is not found
-    int index = rand ()%wCount;
+    
+    int index = rand() % wCount;
     WORD= wArray[index].c_str();
-    int wLen= strlen(WORD);
+    int wLen = strlen(WORD);
     
     //Input player guesses in a string
     string space;
-    for(int i=0;1<wLen;i++)
-        space+="_";
-    const char *blanks=space.c_str();//Empty string
+    for(int i = 0;i < wLen; i++)
+        space += "_";
+    const char *blanks = space.c_str();//Empty string
     char fBlank[wLen];
     strcpy(fBlank,blanks);
     rGame(fBlank,wLen,pGuess,hints,strikes,score);
@@ -79,7 +80,7 @@ void display(){
     cout<<"Rule 1. You will only have seven chances to guess the random word"<<endl;
     cout<<"Rule 2. If you guess the correct word before the seven chances you"<<endl;
     cout<<"         you will earn 10 points"<<endl;
-    cout<<"Rule 3. I can give you only one hint but I will do deduct five points."<<endl;
+    cout<<"Rule 3. I can give you only one hint but I will deduct five points."<<endl;
     cout<<endl;
     
 }
@@ -88,16 +89,16 @@ void display(){
 void rGame(char fBlank[],int size,char pGuess, int hints,int strikes,int score){
     //Input the rules of the games
     display();
-    //Display hwo many letters in a word
+    //Display how many letters in a word
     display(fBlank,size);
     
     bool cWord = false;//
-    while (cWord==false){
+    while (cWord == false){
         cout<<"Your Guess? ";
         cin>>pGuess;
         
-        if(pGuess=='?'){
-            if(hints==0){
+        if(pGuess == '?'){
+            if(hints == 0){
                 int vowels;
                 for(int i=0;i<size;i++){
                     switch(WORD[i]){
@@ -109,7 +110,7 @@ void rGame(char fBlank[],int size,char pGuess, int hints,int strikes,int score){
                         default:break;
                     };
                 }
-                cout<<vowels<<" vowel(s) is this word."<<endl;
+                cout<< vowels <<" vowel(s) is this word."<<endl;
                 cout<< "-5 points"<<endl;
                 score -=5;
             }
@@ -118,16 +119,16 @@ void rGame(char fBlank[],int size,char pGuess, int hints,int strikes,int score){
             hints++;
         }
         else{
-            FNDTYPE result=fLetter(pGuess, fBlank);
-            if(result==NFOUND){
+            FNDTYPE result= fLetter(pGuess, fBlank);
+            if(result == NFOUND){
                 cout<<"Incorrect! -1 point."<<endl;
                 score--;
                 strikes++;
             }
             else{
-                if(result==FOUND){
+                if(result == FOUND){
                     cout<<"Correct! +5 points.";
-                    score+=5;
+                    score += 5;
                 }
                 else
                     cout<<"Letter was already found.";
@@ -135,13 +136,13 @@ void rGame(char fBlank[],int size,char pGuess, int hints,int strikes,int score){
             cout<<endl<<endl;
                 
                         
-        
+        //Where the word was filled
         display(fBlank,size);
         
-        string uWord=fBlank;
-        string coWord=WORD;
-        if(uWord==coWord)
-            cWord=true;
+        string uWord = fBlank;
+        string coWord = WORD;
+        if(uWord == coWord)
+            cWord = true;
         else//
         {
             if(strikes == 7)
@@ -159,30 +160,30 @@ display(cWord, strikes, score);
 void display(char fBlank[],int size){
     //Display the blanks
     for(int i=0;i<size;i++)
-        cout<< " "<<fBlank[i];
+        cout<< " " <<fBlank[i];
     cout<<endl;
 }
 //Letter given by the user
 FNDTYPE fLetter(char pGuess,char fBlank[]){
     char *cPter = strchr(fBlank, pGuess);// Pointers
-    if(cPter!=NULL)
+    if(cPter != NULL)
         return ARDFOUND;
     
     cPter=strchr(WORD,pGuess);
-    if(cPter==NULL)
+    if(cPter == NULL)
         return NFOUND;
     
-    while(cPter!=NULL){
-        int iFound=cPter-WORD;
-        fBlank[iFound]=pGuess;
-        cPter=strchr(cPter+1,pGuess);
+    while(cPter != NULL){
+        int iFound= cPter - WORD;
+        fBlank[iFound]= pGuess;
+        cPter = strchr( cPter + 1,pGuess);
     }
     return FOUND;
         
     }
 //If the player completed the word in seven chances
 bool bonus(int strikes){
-    if(strikes<7)
+    if(strikes < 7)
         return true;
     else
         return false;
@@ -190,9 +191,9 @@ bool bonus(int strikes){
 //Display results and Output Results
 void display(bool cWord,int strikes, int score){
     cout<<endl;
-    if(cWord==false){
+    if(cWord == false){
         cout<< "You Lose!";
-        cout<< "The word was "<<WORD;
+        cout<< " The word was "<<WORD;
         oFile("Lost", strikes, score);
     }
     else
@@ -212,8 +213,8 @@ oFile("Won",strikes,score);
 void oFile(string results,int strikes,int score){
     ofstream myfile;
     myfile.open("game.dat");
-    myfile<<"You"<<results<<" the game!"<<endl;
-    myfile<<"The word was" <<WORD      <<endl;
+    myfile<<"You "<<results<<" the game!"<<endl;
+    myfile<<"The word was " <<WORD      <<endl;
     myfile << "You used up "   << strikes       << " strikes" << endl;
     myfile << "Your score = "  << score         << endl;
     myfile.close();
