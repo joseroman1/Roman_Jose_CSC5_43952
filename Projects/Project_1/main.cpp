@@ -26,6 +26,7 @@ void rGame(char fBlank[],int,char,int,int,int);
 void display(char fBlank[], int);// Fill in the blanks
 FNDTYPE fLetter(char,char fBlank[]);//Blanks to be filled
 bool bonus(int);//Finish the word in seven chances
+void display(bool,int,int);
 void winlose(bool,int,int);//Output if the player won or lost
 void oFile(string,int,int);// Output the result in a file
 
@@ -79,12 +80,17 @@ void display(){
     cout<<"Rule 2. If you guess the correct word before the seven chances you"<<endl;
     cout<<"         you will earn 10 points"<<endl;
     cout<<"Rule 3. I can give you only one hint but I will do deduct five points."<<endl;
+    cout<<endl;
     
 }
+
+
 void rGame(char fBlank[],int size,char pGuess, int hints,int strikes,int score){
     //Input the rules of the games
     display();
+    //Display hwo many letters in a word
     display(fBlank,size);
+    
     bool cWord = false;//
     while (cWord==false){
         cout<<"Your Guess? ";
@@ -98,6 +104,8 @@ void rGame(char fBlank[],int size,char pGuess, int hints,int strikes,int score){
                         case 'a':{vowels++;break;}
                         case 'i':{vowels++;break;}
                         case 'u':{vowels++;break;}
+                        case 'e':{vowels++;break;}
+                        case 'o':{vowels++;break;}
                         default:break;
                     };
                 }
@@ -127,7 +135,7 @@ void rGame(char fBlank[],int size,char pGuess, int hints,int strikes,int score){
             cout<<endl<<endl;
                 
                         
-        }
+        
         display(fBlank,size);
         
         string uWord=fBlank;
@@ -145,8 +153,7 @@ void rGame(char fBlank[],int size,char pGuess, int hints,int strikes,int score){
 //Display results to user
 display(cWord, strikes, score);
 }
-                               
-                              
+
 
 //
 void display(char fBlank[],int size){
@@ -157,10 +164,62 @@ void display(char fBlank[],int size){
 }
 //Letter given by the user
 FNDTYPE fLetter(char pGuess,char fBlank[]){
-    char *cPter=strchr(fBlank,pGuess);// Pointers
+    char *cPter = strchr(fBlank, pGuess);// Pointers
     if(cPter!=NULL)
         return ARDFOUND;
     
     cPter=strchr(WORD,pGuess);
     if(cPter==NULL)
         return NFOUND;
+    
+    while(cPter!=NULL){
+        int iFound=cPter-WORD;
+        fBlank[iFound]=pGuess;
+        cPter=strchr(cPter+1,pGuess);
+    }
+    return FOUND;
+        
+    }
+//If the player completed the word in seven chances
+bool bonus(int strikes){
+    if(strikes<7)
+        return true;
+    else
+        return false;
+}
+//Display results and Output Results
+void display(bool cWord,int strikes, int score){
+    cout<<endl;
+    if(cWord==false){
+        cout<< "You Lose!";
+        cout<< "The word was "<<WORD;
+        oFile("Lost", strikes, score);
+    }
+    else
+    {
+        if(bonus(strikes)){
+            cout<< "Congratulation! You completed the word before 7 strikes! "<<endl;
+            cout<< "+10 points!";
+            score+=10;
+       
+    }
+    else
+    cout<< "You have completed the game! Congratulations!";
+oFile("Won",strikes,score);
+}
+}
+
+void oFile(string results,int strikes,int score){
+    ofstream myfile;
+    myfile.open("game.dat");
+    myfile<<"You"<<results<<" the game!"<<endl;
+    myfile<<"The word was" <<WORD      <<endl;
+    myfile << "You used up "   << strikes       << " strikes" << endl;
+    myfile << "Your score = "  << score         << endl;
+    myfile.close();
+    // Tell User their result was outputted to a file
+    cout << endl;
+    cout << "Your score was printed to a file";
+    cout << "...Go check out your score!" << endl;
+    
+}
