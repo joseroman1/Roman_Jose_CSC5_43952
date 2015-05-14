@@ -110,28 +110,44 @@ void rGame(char fBlank[],int size,char pGuess, int hints,int strikes,int score){
             hints++;
         }
         else{
-            FNDTYPE result=fLetter(pGuess,fBlank);
+            FNDTYPE result=fLetter(pGuess, fBlank);
             if(result==NFOUND){
                 cout<<"Incorrect! -1 point."<<endl;
                 score--;
                 strikes++;
             }
             else{
-                if(result++FOUND){
+                if(result==FOUND){
                     cout<<"Correct! +5 points.";
                     score+=5;
                 }
                 else
-                    cout<<""
+                    cout<<"Letter was already found.";
+            }
+            cout<<endl<<endl;
                 
                         
-                    
-                        
-                    
-                    
-                }
-            }
+        }
+        display(fBlank,size);
+        
+        string uWord=fBlank;
+        string coWord=WORD;
+        if(uWord==coWord)
+            cWord=true;
+        else//
+        {
+            if(strikes == 7)
+                break;
+        }
         }
     }
+//Display results to user
+display(cWord,strikes,score);
 }
+//
+void display(char fBlank[],int size){
+    //Display the blanks
+    for(int i=0;i<size;i++)
+        cout<< " "<<fBlank[i];
+    cout<<endl;
 }
