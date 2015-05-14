@@ -41,27 +41,27 @@ int main (int argc, char** argv){
     int strikes =0;//Guessed Wrong
     int hints   =0;//Hints at the player
     
-    const int MLNIF =300; //Max lines in file
+    const int MLNIF = 300; //Max lines in file
     string wArray[MLNIF];
-    int wCount =0;//Word Count
+    int wCount = 0;//Word Count
     ifstream fin("HangmanWords.txt");//File name for the hangman words
     if (fin.is_open()){
         
-        while(!fin.eof()&& wCount < MLNIF){
+        while(!fin.eof() && wCount < MLNIF){
             getline(fin, wArray[wCount]);
             wCount++;
         }
     }
     else
         cout<<"File was not opened"<<endl;//Input this if file is not found
-    
+    //Random Word from file
     int index = rand() % wCount;
-    WORD= wArray[index].c_str();
+    WORD = wArray[index].c_str();
     int wLen = strlen(WORD);
     
     //Input player guesses in a string
     string space;
-    for(int i = 0;i < wLen; i++)
+    for (int i = 0;i < wLen; i++)
         space += "_";
     const char *blanks = space.c_str();//Empty string
     char fBlank[wLen];
@@ -90,7 +90,7 @@ void rGame(char fBlank[],int size,char pGuess, int hints,int strikes,int score){
     //Input the rules of the games
     display();
     //Display how many letters in a word
-    display(fBlank,size);
+    display(fBlank, size);
     
     bool cWord = false;//
     while (cWord == false){
@@ -99,10 +99,10 @@ void rGame(char fBlank[],int size,char pGuess, int hints,int strikes,int score){
         
         if(pGuess == '?'){
             if(hints == 0){
-                int vowels;
+                int vowels=0;
                 for(int i=0;i<size;i++){
                     switch(WORD[i]){
-                        case 'a':{vowels++;break;}
+                        case 'a':{vowels++;break;}// vowels++ means vowels=vowels+1;
                         case 'i':{vowels++;break;}
                         case 'u':{vowels++;break;}
                         case 'e':{vowels++;break;}
@@ -137,7 +137,7 @@ void rGame(char fBlank[],int size,char pGuess, int hints,int strikes,int score){
                 
                         
         //Where the word was filled
-        display(fBlank,size);
+        display(fBlank, size);
         
         string uWord = fBlank;
         string coWord = WORD;
