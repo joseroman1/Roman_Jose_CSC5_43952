@@ -1,0 +1,4 @@
+You Lost the game!
+The word was sunglasses
+You used up 7 strikes
+Your score = 3

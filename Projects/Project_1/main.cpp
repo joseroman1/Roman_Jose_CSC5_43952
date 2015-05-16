@@ -27,7 +27,6 @@ void display(char fBlank[], int);// Fill in the blanks
 FNDTYPE fLetter(char,char fBlank[]);//Blanks to be filled
 bool bonus(int);//Finish the word in seven chances
 void display(bool,int,int);
-void winlose(bool,int,int);//Output if the player won or lost
 void oFile(string,int,int);// Output the result in a file
 
 //Execution Begins Here!
@@ -75,12 +74,15 @@ int main (int argc, char** argv){
 //Rules of the game
 void display(){
     cout<<"Welcome to the Hangman Game..."<<endl;
-    cout<<"To win the game you need to guess the random word."<<endl;
+    cout<<"To win the game you need to guess a random word."<<endl;
     cout<<"Rules:"<<endl;
     cout<<"Rule 1. You will only have seven chances to guess the random word"<<endl;
     cout<<"Rule 2. If you guess the correct word before the seven chances you"<<endl;
     cout<<"         you will earn 10 points"<<endl;
-    cout<<"Rule 3. I can give you only one hint but I will deduct five points."<<endl;
+    cout<<"Rule 3. You are allowed for only one hint but I will deduct five points."<<endl;
+    cout<<"Rule 4. For each correct letter from the random word you earn five points."<<endl;
+    cout<<"Rule 5. For each incorrect letter from the random word I will deduct you 1 point."<<endl;
+    cout<<"Rule 6. Good Luck!! May the odd be in your favor.."<<endl;
     cout<<endl;
     
 }
@@ -94,8 +96,12 @@ void rGame(char fBlank[],int size,char pGuess, int hints,int strikes,int score){
     
     bool cWord = false;//
     while (cWord == false){
+      
         cout<<"Your Guess? ";
         cin>>pGuess;
+    
+         
+   
         
         if(pGuess == '?'){
             if(hints == 0){
@@ -212,7 +218,7 @@ oFile("Won",strikes,score);
 
 void oFile(string results,int strikes,int score){
     ofstream myfile;
-    myfile.open("game.dat");
+    myfile.open("game.txt");
     myfile<<"You "<<results<<" the game!"<<endl;
     myfile<<"The word was " <<WORD      <<endl;
     myfile << "You used up "   << strikes       << " strikes" << endl;
