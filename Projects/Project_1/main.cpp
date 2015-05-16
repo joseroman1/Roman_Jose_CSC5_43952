@@ -217,13 +217,13 @@ oFile("Won",strikes,score);
 }
 
 void oFile(string results,int strikes,int score){
-    ofstream myfile;
-    myfile.open("game.txt");
-    myfile<<"You "<<results<<" the game!"<<endl;
-    myfile<<"The word was " <<WORD      <<endl;
-    myfile << "You used up "   << strikes       << " strikes" << endl;
-    myfile << "Your score = "  << score         << endl;
-    myfile.close();
+    ofstream out;
+    out.open("game.txt");
+    out<<"You "<<results<<" the game!"<<endl;
+    out<<"The word was " <<WORD      <<endl;
+    out << "You used up "   << strikes       << " strikes" << endl;
+    out<< "Your score = "  << score         << endl;
+    out.close();
     // Tell User their result was outputted to a file
     cout << endl;
     cout << "Your score was printed to a file";
