@@ -43,10 +43,8 @@ int main(int argc, char** argv) {
     }while(advice!="\0");
     //Close the file
     fout.close();
-    //exit from the program
-    exit(1);
-}
-      char next;
+    
+     char next;
     //ifstream open a file to input from the file
     fin.get(next);
     //Input each character from the file and input it to the display
@@ -67,8 +65,6 @@ int main(int argc, char** argv) {
     //closing a file disconnect the stream from the file
     fin.close();
     fout.close();
-    
-    
     return 0;
 }
 
