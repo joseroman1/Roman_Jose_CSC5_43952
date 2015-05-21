@@ -21,15 +21,15 @@ void sort(int [],int);
 
 //Execution begins here!
 int main(int argc, char** argv) {
-    int i;
-    int a[10]={7, 8, 9, 6, 4, 1, 2, 3, 0, 5,};
+    const int SIZE =10;
+    int a[SIZE]={7, 8, 9, 6, 4, 1, 2, 3, 0, 5};
     cout<<"Unsorted integers "<<endl;
-    for (i=0;i<10;i++)
+    for (int i=0;i<SIZE;i++)
         cout<<a[i]<< " ";
         cout<<endl;
-        sort(a, 10);
+        sort(a, SIZE);
         cout<< "In sorted order the integer are: "<<endl;
-        for(i=0;i<10;i++)
+        for(int i=0;i<SIZE;i++)
             cout<<a[i]<< " ";
         cout<<endl;
         return 0;
