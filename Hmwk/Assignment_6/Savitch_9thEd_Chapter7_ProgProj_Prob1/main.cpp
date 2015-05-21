@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
     int SIZE=5;
     int array[SIZE];
     
-    cout<<"Give me "<<SIZE<<" numbers. Press return after each number"<<endl;
+    cout<<"Give me "<<SIZE<<" numbers. Press return after entering each number"<<endl;
     cin>>array[0]>>array[1]>>array[2]>>array[3]>>array[4];
     
     //Print Array
