@@ -19,8 +19,8 @@ void sBoard(char []);
 int main(int argc, char** argv) {
     const char SIZE=9;
     char board[SIZE];
-    int nMoves=0;
-    char wTurn;
+    int nMoves = 0;
+    char wTurn = 'X';
     int move;
     for (int i=0;i<9;i++){
         board[i]= '1' + i;
