@@ -35,3 +35,17 @@ int main(int argc, char** argv) {
     return 0;
 }
 
+void printArray(int a[],int SIZE){
+    for(int i=0;i<SIZE;i++)
+        cout<<a[i]<<" ";
+    cout<<endl;
+}
+int cNumber(int a[],int SIZE){
+    int counter =0;
+    for (int i=0;i<SIZE;i++){
+        if(a[i] == 2)
+            counter++;
+    }
+    return counter;
+    
+}
