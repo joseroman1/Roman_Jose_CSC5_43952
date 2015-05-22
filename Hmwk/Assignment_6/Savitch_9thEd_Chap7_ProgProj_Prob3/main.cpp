@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
     array[1] = 'b';
     array[2] = 'a';
     array[3] = 'c';
-    int sizes =4;
+    int sizes = 4;
     cout<<"Before removing: ";
     printArray(array,sizes);
     delete_repeats(array,sizes);
