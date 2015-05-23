@@ -7,6 +7,7 @@
 //System Libraries
 #include <iostream>
 #include <cmath>
+#include <time.h>
 using namespace std;
 
 //User Libraries
