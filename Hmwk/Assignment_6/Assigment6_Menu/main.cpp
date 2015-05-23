@@ -79,7 +79,7 @@ int main(int argc, char** argv) {
     do{
         //General Menu Format
         //Display the selection
-        cout<<"  Chapter 5 Homework Assignment Menu."<<endl;
+        cout<<"  Chapter 7 Homework Assignment Menu."<<endl;
         cout<<"Type 1 to solve Gaddis 8th Ed. Chapter 7 Problem 1"<<endl;
         cout<<"Type 2 to solve Savitch 8th Ed. Chapter 7 Problem 10"<<endl;
         cout<<"Type 3 to solve Savitch 8th Ed. Chapter 7 Problem 19 "<<endl;
@@ -88,8 +88,8 @@ int main(int argc, char** argv) {
         cout<<"Type 6 to solve Savitch 8th Ed. Chapter 7 Problem 7"<<endl;
         cout<<"Type 7 to solve Savitch 9th Ed. Chapter 7 Problem 3"<<endl;
         cout<<"Type 8 to solve Savitch 9th Ed. Chapter 7 Problem 1"<<endl;
-        cout<<"Type 9 to solve Savitch 9th Ed. Chapter 5 Problem 2"<<endl;
-        cout<<"Type 0 to solve Savitch 8th Ed. Chapter 5 Problem 6"<<endl;
+        cout<<"Type 9 to solve Savitch 9th Ed. Chapter 7 Problem 2"<<endl;
+        cout<<"Type 0 to solve Savitch 8th Ed. Chapter 7 Problem 6"<<endl;
         cout<<"Type anything else to quit with no solutions."<<endl;
         
         //Read the choice
@@ -468,7 +468,7 @@ void problem8(){
     //Declare Variables
     int SIZE=5;
     int array[SIZE];
-    
+    cout<<"This program check if the array starts or ends with a 2."<<endl;
     cout<<"Give me "<<SIZE<<" numbers. Press return after entering each number"<<endl;
     cin>>array[0]>>array[1]>>array[2]>>array[3]>>array[4];
     
@@ -523,6 +523,7 @@ void problem9(){
     int array[SIZE];
     int nof2 = 0;//Number of two
     
+    cout<<"This program check how many 2 is in the array"<<endl;
     cout<<"Give me "<<SIZE<<" Numbers. Press Return after entering each number"<<endl;
     cin>>array[0]>>array[1]>>array[2]>>array[3]>>array[4];
     
