@@ -1,4 +1,4 @@
 You Lost the game!
-The word was kitchen
+The word was square
 You used up 7 strikes
-Your score = 3
+Your score = 23
