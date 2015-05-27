@@ -1,4 +1,4 @@
 You Lost the game!
-The word was square
+The word was ship
 You used up 7 strikes
-Your score = 23
+Your score = 3

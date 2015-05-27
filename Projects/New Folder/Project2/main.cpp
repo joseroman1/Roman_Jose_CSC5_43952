@@ -1,9 +1,16 @@
 /* 
  * File:   main.cpp
- * Author: rcc
- *
+ * Author: Jose Roman
  * Created on May 27, 2015, 8:27 AM
  */
+
+
+//Create a better game using array 
+//and other things such as what we have learn in the class.
+//This project have to be able to let the player to input a word
+//This project have to be able to repeat the game when the game ends 
+//This project has to let the player to understand how to play the game 
+//This game have to let the player use a hint
 
 //System Libraries
 #include <iostream>
