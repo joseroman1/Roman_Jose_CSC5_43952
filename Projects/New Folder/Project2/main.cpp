@@ -11,6 +11,7 @@
 //This project have to be able to repeat the game when the game ends 
 //This project has to let the player to understand how to play the game 
 //This game have to let the player use a hint
+//Finish the code...
 
 //System Libraries
 #include <iostream>
@@ -89,7 +90,7 @@ void display(){
     cout<<"Rule 3. You are allowed for only one hint but I will deduct five points."<<endl;
     cout<<"Rule 4. For each correct letter from the random word you earn five points."<<endl;
     cout<<"Rule 5. For each incorrect letter from the random word I will deduct you 1 point."<<endl;
-    cout<<"Rule 6. Good Luck!! May the odd be in your favor.."<<endl;
+    cout<<"Good Luck!! May the odd be in your favor.."<<endl;
     cout<<endl;
     
 }
@@ -103,12 +104,9 @@ void rGame(char fBlank[],int size,char pGuess, int hints,int strikes,int score){
     
     bool cWord = false;//
     while (cWord == false){
-      
+      //Ask for the user's guess
         cout<<"Your Guess? ";
         cin>>pGuess;
-    
-         
-   
         
         if(pGuess == '?'){
             if(hints == 0){
