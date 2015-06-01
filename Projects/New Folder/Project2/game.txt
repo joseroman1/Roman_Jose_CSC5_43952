@@ -1,4 +1,4 @@
 You Lost the game!
-The word was ship
+The word was chief
 You used up 7 strikes
 Your score = 3
