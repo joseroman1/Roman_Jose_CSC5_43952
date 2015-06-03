@@ -1,4 +1,4 @@
 You Lost the game!
-The word was chief
+The word was bird
 You used up 7 strikes
-Your score = 3
+Your score = -7

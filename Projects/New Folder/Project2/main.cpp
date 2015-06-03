@@ -5,6 +5,8 @@
  */
 
 
+//************************************************************************//
+
 //Create a better game using array 
 //and other things such as what we have learn in the class.
 //This project have to be able to let the player to input a word
@@ -12,6 +14,7 @@
 //This project has to let the player to understand how to play the game 
 //This game have to let the player use a hint
 //Finish the code...
+//************************************************************************//
 
 //System Libraries
 #include <iostream>
@@ -30,7 +33,7 @@ enum FNDTYPE {NFOUND, FOUND, ARDFOUND};// Compare Results
 
 //Function Prototypes
 void display();//rules of the games
-void rGame(char fBlank[],int,char,int,int,int);
+void rGame(char fBlank[],int,char,int,int,int);//Run the game
 void display(char fBlank[], int);// Fill in the blanks
 FNDTYPE fLetter(char,char fBlank[]);//Blanks to be filled
 bool bonus(int);//Finish the word in seven chances
@@ -59,6 +62,7 @@ int main (int argc, char** argv){
             wCount++;
         }
     }
+    //If the file is not found
     else
         cout<<"File was not opened"<<endl;//Input this if file is not found
     //Random Word from file
