@@ -16,7 +16,7 @@
 //Finish the code...
 //************************************************************************//
 
-//System Libraries
+//System Libraries 
 #include <iostream>
 #include <string.h>
 #include <string>
@@ -25,7 +25,7 @@
 using namespace std;
 
 //User Libraries
-
+//Create structure uaing header
 
 //Global Constants
 const char *WORD;
