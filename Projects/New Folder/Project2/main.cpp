@@ -2,7 +2,7 @@
  * File:   main.cpp
  * Author: Jose Roman
  * Created on May 27, 2015, 8:27 AM
- *  Purpose: Finish the project 1 and make it better
+ *  Purpose: Finish the project 1 and make it better -> Hangman
  */
 
 
@@ -19,30 +19,34 @@
 //************************************************************************//
 
 //System Libraries 
-#include <iostream>
+#include <iostream> //Read the inputs
+#include <iomanip> //Format the Output
 #include <string.h>
 #include <string>
-#include <fstream>
-#include <cstdlib>
+#include <fstream> //Read and write files
+#include <cstdlib> //Rand 
 using namespace std;
 
 //User Libraries
-#include "GamerGame"
+#include "GamerGame.h"
 #include "Gamer.h"
 #define MaxWordLength 50 
 
 //Global Constants
-const char WORD[MaxWordLength];
+char WORD[MaxWordLength];
 enum FNDTYPE {NFOUND, FOUND, ARDFOUND};// Compare Results
 
 //Function Prototypes
 void randFile(int &);// Random word from file
 void fBlanks(char [],int);//How many blanks does the user has to fill
 void iGamer(Gamer *);//Initialize player
-void runGame();//Run the game
-void display();//Display the rules of the gamesto the player
+void runGame(GamerGame *,Gamer *);//Run the game
+void display();//Display the rules of the games to the player
 void display(char [],int);//Display's an array
 void display(Gamer *,bool);// Output if the player won or lost
+void iHangman(string [][COL]);//Initialize the hangman drawing 
+void dHangman(GamerGame *,Gamer *);//The system draws a Hangman Stick
+void Hint(Gamer *, int);// Hint for the gamer
 void rGame(char fBlank[],int,char,int,int,int);//Run the game
 void display(char fBlank[], int);// Fill in the blanks
 FNDTYPE fLetter(char,char fBlank[]);//Blanks to be filled
@@ -56,11 +60,12 @@ int main (int argc, char** argv){
     srand (time(NULL));
     
     //Declare Variables
-    char pGuess;//Player Guess
-    int score   =0;//Player Score
-    int strikes =0;//Guessed Wrong
-    int hints   =0;//Hints at the player
+    GamerGame *game;
+    Gamer     *gamer;//Gamer Database
+    int wLenght = 0;//The lenght of the random word
     
+   //Create a new file
+    ofstream 
     const int MLNIF = 300; //Max lines in file
     string wArray[MLNIF];
     int wCount = 0;//Word Count
