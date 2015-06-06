@@ -2,18 +2,20 @@
  * File:   main.cpp
  * Author: Jose Roman
  * Created on May 27, 2015, 8:27 AM
+ *  Purpose: Finish the project 1 and make it better
  */
 
 
 //************************************************************************//
 
-//Create a better game using array 
+//Create a better game using structures and arrays
 //and other things such as what we have learn in the class.
-//This project have to be able to let the player to input a word
 //This project have to be able to repeat the game when the game ends 
 //This project has to let the player to understand how to play the game 
 //This game have to let the player use a hint
-//Finish the code...
+//Let the player end the game whenever the player wants to.
+//Use c++ webasite and YouTube to finish the code
+
 //************************************************************************//
 
 //System Libraries 
@@ -25,14 +27,22 @@
 using namespace std;
 
 //User Libraries
-//Create structure uaing header
+#include "GamerGame"
+#include "Gamer.h"
+#define MaxWordLength 50 
 
 //Global Constants
-const char *WORD;
+const char WORD[MaxWordLength];
 enum FNDTYPE {NFOUND, FOUND, ARDFOUND};// Compare Results
 
 //Function Prototypes
-void display();//rules of the games
+void randFile(int &);// Random word from file
+void fBlanks(char [],int);//How many blanks does the user has to fill
+void iGamer(Gamer *);//Initialize player
+void runGame();//Run the game
+void display();//Display the rules of the gamesto the player
+void display(char [],int);//Display's an array
+void display(Gamer *,bool);// Output if the player won or lost
 void rGame(char fBlank[],int,char,int,int,int);//Run the game
 void display(char fBlank[], int);// Fill in the blanks
 FNDTYPE fLetter(char,char fBlank[]);//Blanks to be filled
