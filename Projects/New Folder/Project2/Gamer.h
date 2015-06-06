@@ -23,8 +23,8 @@ struct Gamer
     std::string         cResult;  // Current Results
     // All Game Variables
     std::vector<int>    aScores; //User all score 
-    std::vector<string> allWords;  
-    std::vector<string> allResults;
+    std::vector<string> aWords;  //User all words
+    std::vector<string> aResults; //User all results
 };
 
 #endif	/* Gamer_H */

@@ -37,7 +37,7 @@ char WORD[MaxWordLength];
 enum FNDTYPE {NFOUND, FOUND, ARDFOUND};// Compare Results
 
 //Function Prototypes
-void randFile(int &);// Random word from file
+void ranFile(int &);// Random word from file
 void fBlanks(char [],int);//How many blanks does the user has to fill
 void iGamer(Gamer *);//Initialize player
 void runGame(GamerGame *,Gamer *);//Run the game
@@ -53,6 +53,8 @@ FNDTYPE fLetter(char,char fBlank[]);//Blanks to be filled
 bool bonus(int);//Finish the word in seven chances
 void display(bool,int,int);
 void oFile(string,int,int);// Output the result in a file
+void pSort(Gamer *);//Sort the player results
+bool repeatG();//Return whether or not the player wants to run the game again 
 
 //Execution Begins Here!
 int main (int argc, char** argv){
@@ -62,10 +64,49 @@ int main (int argc, char** argv){
     //Declare Variables
     GamerGame *game;
     Gamer     *gamer;//Gamer Database
-    int wLenght = 0;//The lenght of the random word
+    int wLength = 0;//The length of the random word
     
    //Create a new file
-    ofstream 
+    ofstream hangmanfile;//Output the results of the game
+    hangmanfile.open("game.txt");
+    
+    //Display the rules
+    display();
+    
+    bool gRepeat;//Repeat the game
+    gamer = new Gamer;//Initialize the database
+    while (gRepeat){
+        iGamer(gamer);
+        ranFile(wLength);
+        game = new GamerGame(wLength);//Initialize the game
+        fBlanks(game->fBlanks, game->wLenght);
+        runGame(game, gamer);
+        
+        //Put the score in a vector
+        gamer->aScores.push_back(gamer->cScore);
+        gamer->aWords.push_back(WORD);
+        gamer->aResults.push_back(gamer->cResult);
+        
+        if(!repeatG())
+            gRepeat = false;
+        else
+            cout<<endl;
+    }
+    cout<<endl;
+    cout<<"The results were outputed to the game.text file"<<endl;
+    pSort(gamer);//Sort the player results
+    oFile(gamer, hangmanfile);//output the results to the file
+    
+    //Close the hangman file
+    hangmanfile.close();
+}
+    
+    
+    
+    
+        
+        
+    }
     const int MLNIF = 300; //Max lines in file
     string wArray[MLNIF];
     int wCount = 0;//Word Count
@@ -196,7 +237,7 @@ void display(char fBlank[],int size){
 //Letter given by the user
 FNDTYPE fLetter(char pGuess,char fBlank[]){
     char *cPter = strchr(fBlank, pGuess);// Pointers
-    if(cPter != NULL)
+    if(cPter != NULL) 
         return ARDFOUND;
     
     cPter=strchr(WORD,pGuess);
