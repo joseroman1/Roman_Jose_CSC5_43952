@@ -50,9 +50,10 @@ void Hint(Gamer *, int);// Hint for the gamer
 int search(char [],char,int);
 FNDTYPE fLetter(char [],char);//Search for the letter given for the user
 void fLetter(GamerGame *,Gamer *,char);//
+int gValue(vector<int>&,int);//Get index of largest value..selection short
 
 void display(char fBlank[], int);// Fill in the blanks
-FNDTYPE fLetter(char,char fBlank[]);//Blanks to be filled
+
 bool bonus(int);//Finish the word in seven chances
 void display(bool,int,int);
 void oFile(Gamer *, ofstream &);// Output the result in a file
@@ -216,6 +217,7 @@ void rGame(GamerGame *game, Gamer *gamer){
     
     display(gamer,pWord);// Display results to the gamer
 }
+
 //*****************************************************************
 
 //Hint to the player
@@ -245,6 +247,40 @@ void Hint(Gamer *gamer,int wLength){
            cout<<"No more hints."<<endl;
         gamer->hints++;
         }
+
+//*********************************************************
+
+//Ask the player if they want to repeat the code
+
+//*********************************************************
+
+bool rGame()
+{
+    cout << endl << endl;
+    bool valid = false;
+    while ( !valid )
+    {
+        char choice;
+        cout << "Play Again(y/n)? ";
+        cin  >> choice;  
+
+        switch(choice)
+        {
+            case 'Y':
+            case 'y': { valid = true; return true;  break; }
+            case 'N':
+            case 'n': { valid = true; return false; break; }
+            default:  { break; }
+        };
+    } 
+    return false;
+}
+
+//*********************************************************************
+
+//Increments/Decrements score or chances depending on search results
+
+//*********************************************************************
 void fLetter(GamerGame *game,Gamer *gamer,char pGuess){
     //Find the letter guessed by the player in the random word
             FNDTYPE result= fLetter(game->fBlanks,pGuess);
@@ -268,7 +304,211 @@ void fLetter(GamerGame *game,Gamer *gamer,char pGuess){
             }
             cout<<endl<<endl;
 }
-     //
+
+//*******************************************************************
+
+// Initialize all the variables in the Gamer structure
+
+//*****************************************************************
+
+void iGamer(Gamer *gamer) 
+ { 
+     gamer->score  = 0; 
+     gamer->chances       = 0; 
+     gamer->hints         = 0; 
+     gamer->cResult = ""; 
+ } 
+ 
+//****************************************************
+
+//Display the fill in the blanks
+
+//***************************************************
+
+void display(char fBlanks[], int wLength)
+{
+    // Display the blanks
+    cout << endl;
+    for (int i = 0; i < wLength; i++)
+        cout << " " << fBlanks[i];
+    cout << endl;
+}
+
+//***********************************************************
+
+//The results of the user when the game ended.
+
+//**********************************************************
+void display(Gamer *gamer,bool pWord){
+    cout << endl;
+    // Set Score and Output results
+    if (pWord == false) // Word wasn't completed
+    {
+        cout << "You Lose! The word was " << WORD;
+        gamer->cResult = "Lost";
+    }
+    else // Word was completed
+    {
+        cout << "You have completed the game! Congratulations!";
+        gamer->cResult = "Won";
+    }
+    cout << endl;
+    cout << "Current Score:  " << gamer->score;
+}
+
+//***********************************************************
+
+//Selection Sorts gamer:scores,words,results
+
+//***********************************************************
+
+void pSort(Gamer  *gamer) 
+{     
+    int inValue; //Index of large value
+    int size = gamer->aScores.size();
+    
+    for (int index = 0; index < (size-1); index++)
+    {
+        inValue = gValue(gamer->aScores, index);
+        swap(gamer->aScores,  index, inValue);
+        swap(gamer->aWords,   index, inValue);
+        swap(gamer->aResults, index, inValue);
+    }
+}
+
+//*****************************************************
+
+//Grabs the index of the largest value in vector
+
+//****************************************************
+int gValue(vector<int> &aScores, int index) 
+{
+    int larger = aScores[index];
+    int inValue = index;//Index of the current value
+
+    // Go through the array and compare the next values in the array
+    // to the current smaller value.
+    for (int nextIndex = index + 1; nextIndex < aScores.size(); nextIndex++)
+    {
+        // If the value of smaller is greater than that of a[nextIndex]
+        // assign smaller to the next index's value and
+        // assign the index of the smaller value to be the next index.
+        if (larger < aScores[nextIndex])
+        {
+            larger = aScores[nextIndex];
+            inValue = nextIndex;
+        }
+    }
+    return inValue;
+}
+
+//*************************************************************
+
+//Linear Search for target in a character array
+
+//*************************************************************)
+int search(char a[], char target, int index = 0)
+{
+    int size = strlen(a);
+    for (int i = index; i < size; i++)
+    {
+        if (target == a[i])
+            return i;
+    }
+    return -1;
+}
+
+//**************************************************************
+
+//Initialize the hangman drawing
+
+//**************************************************************
+
+void iHangman(string HangmanGame[][COL])
+{
+    HangmanGame[0][0] = "  _____"; HangmanGame[0][1] = "_____";
+    HangmanGame[1][0] = "  |    "; HangmanGame[1][1] = "    |";
+    HangmanGame[2][0] = "  |    "; HangmanGame[2][1] = "   ";
+    HangmanGame[3][0] = "  |    "; HangmanGame[3][1] = "   ";
+    HangmanGame[4][0] = "  |    "; HangmanGame[4][1] = "   ";
+    HangmanGame[5][0] = "__|____"; HangmanGame[5][1] = "________";
+}
+
+//*********************************************************************
+
+//Output the parts of the hangman as the player's guess is wrong
+
+//******************************************************************
+
+void dHangman(GamerGame *game, Gamer *gamer)
+{
+    string head     = "( )";
+    string leftArm  = "/";
+    string body     = "|";
+    string rightArm = "\\";
+    string leftLeg  = "/";
+    string rightLeg = " \\";
+    bool cDrawing = false;//Completed drawing
+    
+    switch (gamer->chances)
+    {
+        case 0:  break;
+        case 1:  { game->HangmanGame[2][1] += head;     break; };
+        case 2:  { game->HangmanGame[3][1] += leftArm;  break; };
+        case 3:  { game->HangmanGame[3][1] += body;     break; };
+        case 4:  { game->HangmanGame[3][1] += rightArm; break; };
+        case 5:  { game->HangmanGame[4][1] += leftLeg;  break; };
+        case 6:  { game->HangmanGame[4][1] += rightLeg; break; };
+        default: { cDrawing = true; break;         };
+    };
+    
+    // Display Drawing if not complete
+    if (cDrawing == false)
+    {
+        for (int i = 0; i < ROW; i++)
+        {
+            for (int j = 0; j < COL - 1; j++)
+                cout << game->HangmanGame[i][j] 
+                     << game->HangmanGame[i][j+1] << endl;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void display(char fBlank[],int size){
     //Display the blanks
     for(int i=0;i<size;i++)
