@@ -40,7 +40,7 @@ enum FNDTYPE {NFOUND, FOUND, ARDFOUND};// Compare Results
 void ranFile(int &);// Random word from file
 void sBlanks(char [],int);//How many blanks does the user has to fill
 void iGamer(Gamer *);//Initialize player
-void runGame(GamerGame *,Gamer *);//Run the game
+void rGame(GamerGame *,Gamer *);//Run the game
 void display();//Display the rules of the games to the player
 void display(char [],int);//Display's an array
 void display(Gamer *,bool);// Output if the player won or lost
@@ -51,7 +51,6 @@ int search(char [],char,int);
 FNDTYPE fLetter(char [],char);//Search for the letter given for the user
 void fLetter(GamerGame *,Gamer *,char);//
 
-void rGame(char fBlank[],int,char,int,int,int);//Run the game
 void display(char fBlank[], int);// Fill in the blanks
 FNDTYPE fLetter(char,char fBlank[]);//Blanks to be filled
 bool bonus(int);//Finish the word in seven chances
@@ -84,7 +83,7 @@ int main (int argc, char** argv){
         ranFile(wLength);
         game = new GamerGame(wLength);//Initialize the game
         sBlanks(game->fBlanks, game->wLenght);
-        runGame(game, gamer);
+        rGame(game, gamer);
         
         //Put the score in a vector
         gamer->aScores.push_back(gamer->cScore);
@@ -145,18 +144,19 @@ void ranFile(int &wLength){
     void sBlanks(char fBlanks[],int wLength){
     //Input player guesses in a string
     string space;  
-    for (int i = 0;i < wLen; i++)
+    for (int i = 0;i < wLength; i++)
         space += "_";
-    const char *blanks = space.c_str();//Empty string
-    char fBlank[wLen];
-    strcpy(fBlank,blanks);
-    rGame(fBlank,wLen,pGuess,hints,strikes,score);
     
-
+    const char *blanks = space.c_str();//Make an Empty string
+    strcpy(fBlanks,blanks);
 }
 
-
-//Rules of the game
+//************************************************************
+  
+// The Rules of the Game
+    
+//**************************************** ********************   
+  
 void display(){
     cout<<"Welcome to the Hangman Game..."<<endl;
     cout<<"To win the game you need to guess a random word."<<endl;
@@ -172,21 +172,64 @@ void display(){
     
 }
 
+//**********************************************************
 
-void rGame(char fBlank[],int size,char pGuess, int hints,int strikes,int score){
-    //Input the rules of the games
-    display();
-    //Display how many letters in a word
-    display(fBlank, size);
+//Run the Game
+
+//**********************************************************
+
+void rGame(GamerGame *game, Gamer *gamer){
+    //Declare Variables
+    char pGuess;// The player guess
     
-    bool cWord = false;//
-    while (cWord == false){
-      //Ask for the user's guess
+    iHangman(game->HangmanGame);
+    display(game->fBlanks,game->wLenght);
+    
+  
+    bool pWord = false;//True if the gamer completes the word
+    do{
+        //Prompt the user for input
         cout<<"Your Guess? ";
         cin>>pGuess;
+        //If the gamer asked for a hint
+        if (pGuess == '?')
+            Hint(gamer,game->wLenght);
+        else if(pGuess == '#')//End the game when the gamer types '#"
+            break;
+        else
+            fLetter(game,gamer,pGuess);
         
-        if(pGuess == '?'){
-            if(hints == 0){
+        //Check if the blanks are filled and matches the random word
+        string pWord = game->fBlanks;//Player's word
+        string rWord =WORD;//Random word
+        
+        if(pWord == rWord) //If blanks matched the random
+            rWord = true;
+        else//blanks were not filled
+        {
+            if(gamer->chances == 7)//Check if the user used the chances
+                break;
+        }
+        display(game->fBlanks,game->wLenght);//Display the Blanks
+    }
+    while(pWord == false);
+    
+    display(gamer,pWord);// Display results to the gamer
+}
+//*****************************************************************
+
+//Hint to the player
+
+//****************************************************************
+
+void Hint(Gamer *gamer,int wLength){
+    
+        
+        
+        
+        
+        
+        if(Hint == 0){
                 int vowels=0;
                 for(int i=0;i<size;i++){
                     switch(WORD[i]){
@@ -227,14 +270,7 @@ void rGame(char fBlank[],int size,char pGuess, int hints,int strikes,int score){
         //Where the word was filled
         display(fBlank, size);
         
-        string uWord = fBlank;
-        string coWord = WORD;
-        if(uWord == coWord)
-            cWord = true;
-        else//
-        {
-            if(strikes == 7)
-                break;
+        
         }
     }        
     
