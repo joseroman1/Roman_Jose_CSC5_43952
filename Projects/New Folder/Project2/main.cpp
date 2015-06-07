@@ -9,12 +9,12 @@
 //************************************************************************//
 
 //Create a better game using structures and arrays
-//and other things such as what we have learn in the class.
+//and other things that we have learn in the class.
 //This project have to be able to repeat the game when the game ends 
-//This project has to let the player to understand how to play the game 
+//This project has to display the rules of the games
 //This game have to let the player use a hint
 //Let the player end the game whenever the player wants to.
-//Use c++ webasite and YouTube to finish the code
+//Use c++ websites and YouTube to finish the code
 
 //************************************************************************//
 
@@ -22,7 +22,6 @@
 #include <iostream> //Read the inputs
 #include <iomanip> //Format the Output
 #include <string.h>
-#include <string>
 #include <fstream> //Read and write files
 #include <cstdlib> //Rand 
 using namespace std;
@@ -100,17 +99,20 @@ int main (int argc, char** argv){
     //Close the hangman file
     hangmanfile.close();
 }
-    
-    
-    
-    
-        
-        
-    }
+
+//************************************************************//
+
+//This gets a random word from the "HangmanWords.text fille
+
+//************************************************************//
+
+void ranFile(int &wLenght){
     const int MLNIF = 300; //Max lines in file
-    string wArray[MLNIF];
-    int wCount = 0;//Word Count
+    string wArray[MLNIF];  //Array of words from file
+    int wCount = 0;// the number words
     ifstream fin("HangmanWords.txt");//File name for the hangman words
+                                     //The system will choose a random word
+                                     //from the file
     if (fin.is_open()){
         
         while(!fin.eof() && wCount < MLNIF){
@@ -118,6 +120,7 @@ int main (int argc, char** argv){
             wCount++;
         }
     }
+    
     //If the file is not found
     else
         cout<<"File was not opened"<<endl;//Input this if file is not found
@@ -127,7 +130,7 @@ int main (int argc, char** argv){
     int wLen = strlen(WORD);
     
     //Input player guesses in a string
-    string space;
+    string space;  
     for (int i = 0;i < wLen; i++)
         space += "_";
     const char *blanks = space.c_str();//Empty string
