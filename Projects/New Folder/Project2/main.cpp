@@ -86,7 +86,7 @@ int main (int argc, char** argv){
         rGame(game, gamer);
         
         //Put the score in a vector
-        gamer->aScores.push_back(gamer->cScore);
+        gamer->aScores.push_back(gamer->score);
         gamer->aWords.push_back(WORD);
         gamer->aResults.push_back(gamer->cResult);
         
@@ -223,64 +223,52 @@ void rGame(GamerGame *game, Gamer *gamer){
 //****************************************************************
 
 void Hint(Gamer *gamer,int wLength){
-    
-        
-        
-        
-        
-        
-        if(Hint == 0){
-                int vowels=0;
-                for(int i=0;i<size;i++){
-                    switch(WORD[i]){
-                        case 'a':{vowels++;break;}// vowels++ means vowels=vowels+1;
-                        case 'i':{vowels++;break;}
-                        case 'u':{vowels++;break;}
-                        case 'e':{vowels++;break;}
-                        case 'o':{vowels++;break;}
-                        default:break;
+    //If gamer asks for a hint
+    if(gamer->hints == 0){
+       int vowels=0;//Number of vowels in the random word
+       //Count many vowels does the random word has
+       for(int i=0;i<wLength;i++){
+            switch(WORD[i]){
+            case 'a':{vowels++;break;}// vowels++ means vowels=vowels+1;
+            case 'i':{vowels++;break;}
+            case 'u':{vowels++;break;}
+            case 'e':{vowels++;break;}
+            case 'o':{vowels++;break;}
+            default:break;
                     };
                 }
-                cout<< vowels <<" vowel(s) is this word."<<endl;
-                cout<< "-5 points"<<endl;
-                score -=5;
-            }
-            else 
-                cout<<"No more hints are available."<<endl;
-            hints++;
+       gamer->score -=5; 
+       cout<< vowels <<" vowel(s) is this word."<<endl;
+       cout<<"Current Score: "  <<gamer->score;
+       }
+       else 
+           cout<<"No more hints."<<endl;
+        gamer->hints++;
         }
-        else{
-            FNDTYPE result= fLetter(pGuess, fBlank);
+void fLetter(GamerGame *game,Gamer *gamer,char pGuess){
+    //Find the letter guessed by the player in the random word
+            FNDTYPE result= fLetter(game->fBlanks,pGuess);
             if(result == NFOUND){
-                cout<<"Incorrect! -1 point."<<endl;
-                score--;
-                strikes++;
+                gamer->score--;
+                gamer->chances++;
+                //Draw a hangman part when the player's guess is wrong
+                dHangman(game,gamer);
+            cout<<"Incorrect! -1 point."<<endl;
+            cout<<"Current score: "<< gamer->score<<endl;
+            
             }
             else{
                 if(result == FOUND){
+                    gamer->score +=5;
                     cout<<"Correct! +5 points.";
-                    score += 5;
+                    cout<<"Current Score: "<< gamer->score<<endl;
                 }
                 else
                     cout<<"Letter was already found.";
             }
             cout<<endl<<endl;
-                
-                        
-        //Where the word was filled
-        display(fBlank, size);
-        
-        
-        }
-    }        
-    
 }
-//Display results to user
-display(cWord, strikes, score);
-}
-
-
-//
+     //
 void display(char fBlank[],int size){
     //Display the blanks
     for(int i=0;i<size;i++)
@@ -347,4 +335,5 @@ void oFile(string results,int strikes,int score){
     cout << "Your score was printed to a file";
     cout << "...Go check out your score!" << endl;
     
-}
+}         
+

@@ -15,9 +15,9 @@
 struct Gamer
 {
     // Initializes variables
-    Gamer(): cScore(0), chances(0), hints(0), cResult("") {}
+    Gamer(): score(0), chances(0), hints(0), cResult("") {}
     // Current Game Variables
-    int                 cScore;   // User's score
+    int                 score;   // User's score
     int                 chances;        // User's strikes
     int                 hints;          // User's number of hints used 
     std::string         cResult;  // Current Results
