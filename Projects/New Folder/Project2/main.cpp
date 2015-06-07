@@ -24,12 +24,14 @@
 #include <string.h>
 #include <string>
 #include <fstream> //Read and write files
+#include <vector>
 #include <cstdlib> //Rand 
 using namespace std;
 
 //User Libraries
 #include "GamerGame.h"
 #include "Gamer.h"
+
 #define MaxWordLength 50 
 
 //Global Constants
@@ -50,14 +52,11 @@ void Hint(Gamer *, int);// Hint for the gamer
 int search(char [],char,int);
 FNDTYPE fLetter(char [],char);//Search for the letter given for the user
 void fLetter(GamerGame *,Gamer *,char);//
-int gValue(vector<int>&,int);//Get index of largest value..selection short
-
-void display(char fBlank[], int);// Fill in the blanks
-
-bool bonus(int);//Finish the word in seven chances
-void display(bool,int,int);
-void oFile(Gamer *, ofstream &);// Output the result in a file
 void pSort(Gamer *);//Sort the player results
+int gValue(vector<int>&,int);//Get index of largest value..selection short
+void swap(vector<int> &, int, int);    
+void swap(vector<string> &, int, int);  
+void oFile(Gamer *, ofstream &);// Output the result in a file
 bool repeatG();//Return whether or not the player wants to run the game again 
 
 //Execution Begins Here!
@@ -77,7 +76,7 @@ int main (int argc, char** argv){
     //Display the rules
     display();
     
-    bool gRepeat;//Repeat the game
+    bool gRepeat = true;//Repeat the game
     gamer = new Gamer;//Initialize the database
     while (gRepeat){
         iGamer(gamer);
@@ -91,7 +90,7 @@ int main (int argc, char** argv){
         gamer->aWords.push_back(WORD);
         gamer->aResults.push_back(gamer->cResult);
         
-        if(!repeatG())
+        if( !repeatG() )
             gRepeat = false;
         else
             cout<<endl;
@@ -136,7 +135,7 @@ void ranFile(int &wLength){
     wLength = strlen(WORD); //The length  of the chosen word
     
 }
-   //**********************************************************
+  //**********************************************************
     
     //Put the lines from the chosen words
     
@@ -145,33 +144,25 @@ void ranFile(int &wLength){
     void sBlanks(char fBlanks[],int wLength){
     //Input player guesses in a string
     string space;  
-    for (int i = 0;i < wLength; i++)
+    for (int i = 0; i < wLength; i++)
         space += "_";
     
     const char *blanks = space.c_str();//Make an Empty string
     strcpy(fBlanks,blanks);
 }
+ 
+//*******************************************************************
 
-//************************************************************
-  
-// The Rules of the Game
-    
-//**************************************** ********************   
-  
-void display(){
-    cout<<"Welcome to the Hangman Game..."<<endl;
-    cout<<"To win the game you need to guess a random word."<<endl;
-    cout<<"Rules:"<<endl;
-    cout<<"Rule 1. You will only have seven chances to guess the random word"<<endl;
-    cout<<"Rule 2. If you guess the correct word before the seven chances you"<<endl;
-    cout<<"         you will earn 10 points"<<endl;
-    cout<<"Rule 3. You are allowed for only one hint but I will deduct five points."<<endl;
-    cout<<"Rule 4. For each correct letter from the random word you earn five points."<<endl;
-    cout<<"Rule 5. For each incorrect letter from the random word I will deduct you 1 point."<<endl;
-    cout<<"Good Luck!! May the odd be in your favor.."<<endl;
-    cout<<endl;
-    
-}
+// Initialize all the variables in the Gamer structure
+
+//*****************************************************************
+
+void iGamer(Gamer *gamer){ 
+     gamer->score = 0; 
+     gamer->chances = 0; 
+     gamer->hints  = 0; 
+     gamer->cResult = ""; 
+ } 
 
 //**********************************************************
 
@@ -201,14 +192,14 @@ void rGame(GamerGame *game, Gamer *gamer){
             fLetter(game,gamer,pGuess);
         
         //Check if the blanks are filled and matches the random word
-        string pWord = game->fBlanks;//Player's word
+        string uWord = game->fBlanks;//Player's word
         string rWord =WORD;//Random word
         
-        if(pWord == rWord) //If blanks matched the random
-            rWord = true;
+        if(uWord == rWord) //If blanks matched the random
+            pWord = true;
         else//blanks were not filled
         {
-            if(gamer->chances == 7)//Check if the user used the chances
+            if(gamer->chances == 6)//Check if the user used the chances
                 break;
         }
         display(game->fBlanks,game->wLenght);//Display the Blanks
@@ -216,6 +207,116 @@ void rGame(GamerGame *game, Gamer *gamer){
     while(pWord == false);
     
     display(gamer,pWord);// Display results to the gamer
+}
+
+//************************************************************
+  
+// The Rules of the Game
+    
+//**************************************** ********************   
+  
+void display(){
+    cout<<"Welcome to the Hangman Game..."<<endl;
+    cout<<"To win the game you need to guess a random word."<<endl;
+    cout<<"Rules:"<<endl;
+    cout<<"Rule 1. You will only have six chances to guess the random word"<<endl;
+    cout<<"Rule 2. You are allowed for only one hint but I will deduct five points."<<endl;
+    cout<<"        Press '?' for the hint and press return."<<endl;
+    cout<<"Rule 3. For each correct letter from the random word you earn five points."<<endl;
+    cout<<"Rule 4. For each incorrect letter from the random word I will deduct you 1 point."<<endl;
+    cout<<"Rule 5. To end the game type '#' and press return."<<endl;
+    cout<<"Good Luck!! May the odd be in your favor.."<<endl;
+    cout<<endl;
+    
+}
+
+//****************************************************
+
+//Display the fill in the blanks
+
+//***************************************************
+
+void display(char fBlanks[], int wLength){
+    // Display the blanks
+    cout << endl;
+    for(int i = 0; i < wLength; i++)
+        cout<< " " << fBlanks[i];
+    cout<<endl;
+}
+
+//***********************************************************
+
+//The results of the user when the game ended.
+
+//**********************************************************
+void display(Gamer *gamer,bool pWord){
+    cout << endl;
+    // Set Score and Output results
+    if (pWord == false) // Word wasn't completed
+    {
+        cout << "You Lose! The word was " << WORD;
+        gamer->cResult = "Lost";
+    }
+    else // Word was completed
+    {
+        cout << "You have completed the game! Congratulations!";
+        gamer->cResult = "Won";
+    }
+    cout << endl;
+    cout << "Current Score:  " << gamer->score;
+}
+
+//**************************************************************
+
+//Initialize the hangman drawing
+
+//**************************************************************
+
+void iHangman(string HangmanGame[][COL])
+{
+    HangmanGame[0][0] = "  _____"; HangmanGame[0][1] = "_____";
+    HangmanGame[1][0] = "  |    "; HangmanGame[1][1] = "    |";
+    HangmanGame[2][0] = "  |    "; HangmanGame[2][1] = "   ";
+    HangmanGame[3][0] = "  |    "; HangmanGame[3][1] = "   ";
+    HangmanGame[4][0] = "  |    "; HangmanGame[4][1] = "   ";
+    HangmanGame[5][0] = "__|____"; HangmanGame[5][1] = "________";
+}
+
+//*********************************************************************
+
+//Output the parts of the hangman as the player's guess is wrong
+
+//******************************************************************
+
+void dHangman(GamerGame *game, Gamer *gamer)
+{
+    string head     = "( )";
+    string leftArm  = "/";
+    string body     = "|";
+    string rightArm = "\\";
+    string leftLeg  = "/";
+    string rightLeg = " \\";
+    bool cDrawing = false;//Completed drawing
+    
+    switch (gamer->chances){
+        case 0:  break;
+        case 1:  { game->HangmanGame[2][1] += head;     break; };
+        case 2:  { game->HangmanGame[3][1] += leftArm;  break; };
+        case 3:  { game->HangmanGame[3][1] += body;     break; };
+        case 4:  { game->HangmanGame[3][1] += rightArm; break; };
+        case 5:  { game->HangmanGame[4][1] += leftLeg;  break; };
+        case 6:  { game->HangmanGame[4][1] += rightLeg; break; };
+        default: { cDrawing = true; break;         };
+    };
+    
+    // Display Drawing if not complete
+    if (cDrawing == false){
+        for (int i = 0; i < ROW; i++){
+            for (int j = 0; j < COL - 1; j++)
+                cout << game->HangmanGame[i][j] 
+                     << game->HangmanGame[i][j+1]<<endl;
+        }
+    }
 }
 
 //*****************************************************************
@@ -248,33 +349,45 @@ void Hint(Gamer *gamer,int wLength){
         gamer->hints++;
         }
 
-//*********************************************************
 
-//Ask the player if they want to repeat the code
+//*************************************************************
 
-//*********************************************************
+//Linear Search for target in a character array
 
-bool rGame()
+//*************************************************************)
+int search(char a[], char target, int index = 0)
 {
-    cout << endl << endl;
-    bool valid = false;
-    while ( !valid )
+    int size = strlen(a);
+    for (int i = index; i < size; i++)
     {
-        char choice;
-        cout << "Play Again(y/n)? ";
-        cin  >> choice;  
-
-        switch(choice)
-        {
-            case 'Y':
-            case 'y': { valid = true; return true;  break; }
-            case 'N':
-            case 'n': { valid = true; return false; break; }
-            default:  { break; }
-        };
-    } 
-    return false;
+        if (target == a[i])
+            return i;
+    }
+    return -1;
 }
+
+FNDTYPE fLetter(char fBlanks[], char pGuess){
+    // Check first if letter was already found
+    int i = search(fBlanks, pGuess);
+    if (i != -1) // if not NULL
+        return ARDFOUND;
+
+    // Check if letter was not found in fills
+    i = search(WORD, pGuess);
+    if (i == -1) // if null
+        return NFOUND; 
+
+    // Check if letter was found in the WORD
+    while (i != -1)
+    {
+        int indexFound = i;
+        fBlanks[indexFound] = pGuess; // fill in the blanks
+        i = search(WORD, pGuess, i+1);
+    }
+    return FOUND;
+}
+
+
 
 //*********************************************************************
 
@@ -283,7 +396,7 @@ bool rGame()
 //*********************************************************************
 void fLetter(GamerGame *game,Gamer *gamer,char pGuess){
     //Find the letter guessed by the player in the random word
-            FNDTYPE result= fLetter(game->fBlanks,pGuess);
+            FNDTYPE result = fLetter(game->fBlanks, pGuess);
             if(result == NFOUND){
                 gamer->score--;
                 gamer->chances++;
@@ -300,61 +413,10 @@ void fLetter(GamerGame *game,Gamer *gamer,char pGuess){
                     cout<<"Current Score: "<< gamer->score<<endl;
                 }
                 else
-                    cout<<"Letter was already found.";
+                    cout<<"Letter was already found."<<endl;
             }
-            cout<<endl<<endl;
 }
 
-//*******************************************************************
-
-// Initialize all the variables in the Gamer structure
-
-//*****************************************************************
-
-void iGamer(Gamer *gamer) 
- { 
-     gamer->score  = 0; 
-     gamer->chances       = 0; 
-     gamer->hints         = 0; 
-     gamer->cResult = ""; 
- } 
- 
-//****************************************************
-
-//Display the fill in the blanks
-
-//***************************************************
-
-void display(char fBlanks[], int wLength)
-{
-    // Display the blanks
-    cout << endl;
-    for (int i = 0; i < wLength; i++)
-        cout << " " << fBlanks[i];
-    cout << endl;
-}
-
-//***********************************************************
-
-//The results of the user when the game ended.
-
-//**********************************************************
-void display(Gamer *gamer,bool pWord){
-    cout << endl;
-    // Set Score and Output results
-    if (pWord == false) // Word wasn't completed
-    {
-        cout << "You Lose! The word was " << WORD;
-        gamer->cResult = "Lost";
-    }
-    else // Word was completed
-    {
-        cout << "You have completed the game! Congratulations!";
-        gamer->cResult = "Won";
-    }
-    cout << endl;
-    cout << "Current Score:  " << gamer->score;
-}
 
 //***********************************************************
 
@@ -402,178 +464,80 @@ int gValue(vector<int> &aScores, int index)
     return inValue;
 }
 
-//*************************************************************
+//**********************************************************
 
-//Linear Search for target in a character array
+//Swap values in a vector
 
-//*************************************************************)
-int search(char a[], char target, int index = 0)
+//**********************************************************
+
+void swap(vector<int> &a, int i, int j) 
 {
-    int size = strlen(a);
-    for (int i = index; i < size; i++)
-    {
-        if (target == a[i])
-            return i;
-    }
-    return -1;
+   // swaps values.
+   int temp = a[i];
+   a[i] = a[j];
+   a[j] = temp;
 }
 
-//**************************************************************
+//***************************************************************
 
-//Initialize the hangman drawing
+//Swaps values in a vector
 
-//**************************************************************
+//******************************************************************
 
-void iHangman(string HangmanGame[][COL])
+void swap(vector<string> &a, int i, int j) 
 {
-    HangmanGame[0][0] = "  _____"; HangmanGame[0][1] = "_____";
-    HangmanGame[1][0] = "  |    "; HangmanGame[1][1] = "    |";
-    HangmanGame[2][0] = "  |    "; HangmanGame[2][1] = "   ";
-    HangmanGame[3][0] = "  |    "; HangmanGame[3][1] = "   ";
-    HangmanGame[4][0] = "  |    "; HangmanGame[4][1] = "   ";
-    HangmanGame[5][0] = "__|____"; HangmanGame[5][1] = "________";
+   // swaps values.
+   string temp = a[i];
+   a[i] = a[j];
+   a[j] = temp;
 }
 
 //*********************************************************************
 
-//Output the parts of the hangman as the player's guess is wrong
+//Write in a file
 
-//******************************************************************
-
-void dHangman(GamerGame *game, Gamer *gamer)
+//********************************************************************
+void oFile(Gamer *gamer, ofstream &hangmanfile)
 {
-    string head     = "( )";
-    string leftArm  = "/";
-    string body     = "|";
-    string rightArm = "\\";
-    string leftLeg  = "/";
-    string rightLeg = " \\";
-    bool cDrawing = false;//Completed drawing
+    // Output a file when game is complete
+    hangmanfile << "Your Results per Game Played: " << endl << endl;
+    hangmanfile << setw(15) << left << "Word";
+    hangmanfile << setw(10) << left << "Result"; 
+    hangmanfile << setw(4)  << "Score" << endl;
     
-    switch (gamer->chances)
+    for (int i = 0; i < gamer->aScores.size(); i++)
     {
-        case 0:  break;
-        case 1:  { game->HangmanGame[2][1] += head;     break; };
-        case 2:  { game->HangmanGame[3][1] += leftArm;  break; };
-        case 3:  { game->HangmanGame[3][1] += body;     break; };
-        case 4:  { game->HangmanGame[3][1] += rightArm; break; };
-        case 5:  { game->HangmanGame[4][1] += leftLeg;  break; };
-        case 6:  { game->HangmanGame[4][1] += rightLeg; break; };
-        default: { cDrawing = true; break;         };
-    };
-    
-    // Display Drawing if not complete
-    if (cDrawing == false)
+        hangmanfile<< setw(15) << left << gamer->aWords[i];
+        hangmanfile << setw(10) << left << gamer->aResults[i]; 
+        hangmanfile << setw(4)  << gamer->aScores[i] << endl;
+    }
+    hangmanfile<< endl;
+}
+
+//*********************************************************
+
+//Ask the player if they want to repeat the code
+
+//*********************************************************
+
+bool repeatG()
+{
+    cout << endl << endl;
+    bool valid = false;
+    while ( !valid )
     {
-        for (int i = 0; i < ROW; i++)
+        char choice;
+        cout << "Play Again(y/n)? ";
+        cin  >> choice;  
+
+        switch(choice)
         {
-            for (int j = 0; j < COL - 1; j++)
-                cout << game->HangmanGame[i][j] 
-                     << game->HangmanGame[i][j+1] << endl;
-        }
-    }
+            case 'Y':
+            case 'y': { valid = true; return true;  break; }
+            case 'N':
+            case 'n': { valid = true; return false; break; }
+            default:  { break; }
+        };
+    } 
+    return false;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void display(char fBlank[],int size){
-    //Display the blanks
-    for(int i=0;i<size;i++)
-        cout<< " " <<fBlank[i];
-    cout<<endl;
-}
-//Letter given by the user
-FNDTYPE fLetter(char pGuess,char fBlank[]){
-    char *cPter = strchr(fBlank, pGuess);// Pointers
-    if(cPter != NULL) 
-        return ARDFOUND;
-    
-    cPter=strchr(WORD,pGuess);
-    if(cPter == NULL)
-        return NFOUND;
-    
-    while(cPter != NULL){
-        int iFound= cPter - WORD;
-        fBlank[iFound]= pGuess;
-        cPter = strchr( cPter + 1,pGuess);
-    }
-    return FOUND;
-        
-    }
-//If the player completed the word in seven chances
-bool bonus(int strikes){
-    if(strikes < 7)
-        return true;
-    else
-        return false;
-}
-//Display results and Output Results
-void display(bool cWord,int strikes, int score){
-    cout<<endl;
-    if(cWord == false){
-        cout<< "You Lose!";
-        cout<< " The word was "<<WORD;
-        oFile("Lost", strikes, score);
-    }
-    else
-    {
-        if(bonus(strikes)){
-            cout<< "Congratulation! You completed the word before 7 strikes! "<<endl;
-            cout<< "+10 points!";
-            score+=10;
-       
-    }
-    else
-    cout<< "You have completed the game! Congratulations!";
-oFile("Won",strikes,score);
-}
-}
-
-void oFile(string results,int strikes,int score){
-    ofstream out;
-    out.open("game.txt");
-    out<<"You "<<results<<" the game!"<<endl;
-    out<<"The word was " <<WORD      <<endl;
-    out << "You used up "   << strikes       << " strikes" << endl;
-    out<< "Your score = "  << score         << endl;
-    out.close();
-    // Tell User their result was outputted to a file
-    cout << endl;
-    cout << "Your score was printed to a file";
-    cout << "...Go check out your score!" << endl;
-    
-}         
-
