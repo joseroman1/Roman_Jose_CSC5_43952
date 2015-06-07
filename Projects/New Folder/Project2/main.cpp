@@ -22,6 +22,7 @@
 #include <iostream> //Read the inputs
 #include <iomanip> //Format the Output
 #include <string.h>
+#include <string>
 #include <fstream> //Read and write files
 #include <cstdlib> //Rand 
 using namespace std;
@@ -37,7 +38,7 @@ enum FNDTYPE {NFOUND, FOUND, ARDFOUND};// Compare Results
 
 //Function Prototypes
 void ranFile(int &);// Random word from file
-void fBlanks(char [],int);//How many blanks does the user has to fill
+void sBlanks(char [],int);//How many blanks does the user has to fill
 void iGamer(Gamer *);//Initialize player
 void runGame(GamerGame *,Gamer *);//Run the game
 void display();//Display the rules of the games to the player
@@ -46,12 +47,16 @@ void display(Gamer *,bool);// Output if the player won or lost
 void iHangman(string [][COL]);//Initialize the hangman drawing 
 void dHangman(GamerGame *,Gamer *);//The system draws a Hangman Stick
 void Hint(Gamer *, int);// Hint for the gamer
+int search(char [],char,int);
+FNDTYPE fLetter(char [],char);//Search for the letter given for the user
+void fLetter(GamerGame *,Gamer *,char);//
+
 void rGame(char fBlank[],int,char,int,int,int);//Run the game
 void display(char fBlank[], int);// Fill in the blanks
 FNDTYPE fLetter(char,char fBlank[]);//Blanks to be filled
 bool bonus(int);//Finish the word in seven chances
 void display(bool,int,int);
-void oFile(string,int,int);// Output the result in a file
+void oFile(Gamer *, ofstream &);// Output the result in a file
 void pSort(Gamer *);//Sort the player results
 bool repeatG();//Return whether or not the player wants to run the game again 
 
@@ -78,7 +83,7 @@ int main (int argc, char** argv){
         iGamer(gamer);
         ranFile(wLength);
         game = new GamerGame(wLength);//Initialize the game
-        fBlanks(game->fBlanks, game->wLenght);
+        sBlanks(game->fBlanks, game->wLenght);
         runGame(game, gamer);
         
         //Put the score in a vector
@@ -106,29 +111,38 @@ int main (int argc, char** argv){
 
 //************************************************************//
 
-void ranFile(int &wLenght){
+void ranFile(int &wLength){
     const int MLNIF = 300; //Max lines in file
     string wArray[MLNIF];  //Array of words from file
     int wCount = 0;// the number words
     ifstream fin("HangmanWords.txt");//File name for the hangman words
                                      //The system will choose a random word
                                      //from the file
+   
+    //The system checks if the file opens or not
     if (fin.is_open()){
-        
         while(!fin.eof() && wCount < MLNIF){
-            getline(fin, wArray[wCount]);
+            getline(fin, wArray[wCount]);//Read a complete line from the array
             wCount++;
         }
     }
-    
     //If the file is not found
     else
         cout<<"File was not opened"<<endl;//Input this if file is not found
+    
     //Random Word from file
     int index = rand() % wCount;
-    WORD = wArray[index].c_str();
-    int wLen = strlen(WORD);
+    strcpy(WORD, wArray[index].c_str());//Set the rand word from the file
+    wLength = strlen(WORD); //The length  of the chosen word
     
+}
+   //**********************************************************
+    
+    //Put the lines from the chosen words
+    
+   //**********************************************************
+   
+    void sBlanks(char fBlanks[],int wLength){
     //Input player guesses in a string
     string space;  
     for (int i = 0;i < wLen; i++)
@@ -138,7 +152,7 @@ void ranFile(int &wLenght){
     strcpy(fBlank,blanks);
     rGame(fBlank,wLen,pGuess,hints,strikes,score);
     
-    return 0;
+
 }
 
 
