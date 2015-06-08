@@ -5,10 +5,9 @@
  *  Purpose: Finish the project 1 and make it better -> Hangman
  */
 
-
 //************************************************************************//
 
-//Create a better game using structures and arrays
+//Create a better game using structures and arrays  
 //and other things that we have learn in the class.
 //This project have to be able to repeat the game when the game ends 
 //This project has to display the rules of the games
