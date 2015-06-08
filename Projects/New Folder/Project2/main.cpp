@@ -2,7 +2,7 @@
  * File:   main.cpp
  * Author: Jose Roman
  * Created on May 25, 2015, 8:27 AM
- *  Purpose: Finish the project 1 and make it better -> Hangman
+ *      Purpose: Finish the project 1 and make it better -> Hangman
  */
 
 //************************************************************************//
@@ -48,13 +48,13 @@ void display(Gamer *,bool);// Output if the player won or lost
 void iHangman(string [][COL]);//Initialize the hangman drawing 
 void dHangman(GamerGame *,Gamer *);//The system draws a Hangman Stick
 void Hint(Gamer *, int);// Hint for the gamer
-int search(char [],char,int);
+int search(char [],char,int);//Linear search through array for target
 FNDTYPE fLetter(char [],char);//Search for the letter given for the user
 void fLetter(GamerGame *,Gamer *,char);//
 void pSort(Gamer *);//Sort the player results
 int gValue(vector<int>&,int);//Get index of largest value..selection short
-void swap(vector<int> &, int, int);    
-void swap(vector<string> &, int, int);  
+void swap(vector<int> &, int, int);//Swap the values: for scores   
+void swap(vector<string> &, int, int);//Swap the values: for words  
 void oFile(Gamer *, ofstream &);// Output the result in a file
 bool repeatG();//Return whether or not the player wants to run the game again 
 
@@ -224,7 +224,6 @@ void display(){
     cout<<"Rule 3. For each correct letter from the random word you earn five points."<<endl;
     cout<<"Rule 4. For each incorrect letter from the random word I will deduct you 1 point."<<endl;
     cout<<"Rule 5. To end the game type '#' and press return."<<endl;
-    cout<<"Good Luck!! May the odd be in your favor.."<<endl;
     cout<<endl;
     
 }
@@ -364,6 +363,8 @@ int search(char a[], char target, int index = 0)
     }
     return -1;
 }
+
+
 
 FNDTYPE fLetter(char fBlanks[], char pGuess){
     // Check first if letter was already found
