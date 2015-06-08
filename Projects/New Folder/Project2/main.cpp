@@ -1,7 +1,7 @@
 /* 
  * File:   main.cpp
  * Author: Jose Roman
- * Created on May 27, 2015, 8:27 AM
+ * Created on May 25, 2015, 8:27 AM
  *  Purpose: Finish the project 1 and make it better -> Hangman
  */
 

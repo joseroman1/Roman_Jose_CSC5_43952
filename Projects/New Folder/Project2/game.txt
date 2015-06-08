@@ -1,6 +1,5 @@
 Your Results per Game Played: 
 
 Word           Result    Score
-sunglasses     Won       31  
-robot          Lost      0   
+salt           Lost      3   
 

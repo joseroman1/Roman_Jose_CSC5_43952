@@ -2,7 +2,7 @@
  * File:   Gamer.h
  * Author: JR
  *
- * Created on June 5, 2015, 11:37 PM
+ * Created on June 1, 2015, 11:37 PM
  */
 
 #ifndef GAMER_H
